@@ -1,0 +1,5 @@
+INSERT INTO `accounts` (`user_name`, `user_id`, `user_password`, `category`, `acc_id`) VALUES ('Abu Sayem Md Siam', '011201033', '011201033', 'Alumni', '1');
+
+ALTER TABLE user_info ADD FOREIGN KEY(acc_id) REFERENCES accounts(acc_id)
+
+INSERT INTO `user_info` (`acc_id`, `about_me`, `address`, `email`, `phone_num`, `photo_loc`, `school`, `college`, `uni_ug`, `uni_gr`, `uni_pg`, `ssc_year`, `hsc_year`, `ug_year`, `gr_year`, `pg_year`, `ssc_result`, `hsc_result`, `ug_result`, `pg_result`, `skills`, `language`, `facebook`, `massenger`, `whatsapp`) VALUES ('2', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a');

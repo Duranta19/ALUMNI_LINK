@@ -1,0 +1,246 @@
+<?php
+// include('components/dbConnect.php');
+
+if(isset($_POST['submit'])){
+
+  include('components/dbConnect.php');
+  $eventtitle = $_POST['eventtitle'];
+  $eventshortdes = $_POST['esd'];
+  $eventdes = $_POST['ed'];
+  $registrationlink = $_POST['reglink'];
+  $location = $_POST['loc'];
+  $date = $_POST['date'];
+  $time = $_POST['time'];
+  
+  $pic_name= $_FILES['eventImg']['name'];
+  $pic_loc= $_FILES['eventImg']['tmp_name'];
+  $upload_loc='img/'.$pic_name;
+
+  $sql= "INSERT INTO `event_info` (`event_title`, `date`, `time`, `location`, `event_details`, `event_short_details`, `registration_link`, `event_img`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name')";
+  $result=mysqli_query($conn,$sql);
+  // $resultRows = mysqli_num_rows($result);
+
+  if($result){
+    move_uploaded_file($pic_loc,$upload_loc);
+    header("Location: event.php");
+  }
+  else{
+    echo "Failed";
+  }
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="components/navstyle.css" /> -->
+  <link rel="stylesheet" href="components/navstyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/e06a26c5f2.js" crossorigin="anonymous"></script>
+  <style>
+    .mainBody {
+      background: #ffffff;
+    }
+  </style>
+</head>
+
+<body class="mainBody">
+  <!-- sidenav -->
+  <input type="checkbox" id="check" />
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+  <div class="sidebar">
+    <header>
+      <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt=""
+        style="height: 45px; width: 45px" />
+      Alumni_Linked
+    </header>
+    <ul>
+      <li>
+        <a href="userProfile.php">
+          <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+          Alumni
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
+          Jobs
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
+          Job Preparation
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+          Company
+        </a>
+      </li>
+      <li>
+        <a href="event.html">
+          <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+          Events
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+          Forum
+        </a>
+      </li>
+      <li>
+        <a href="#" class="signout">
+          <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+          Sign Out
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- event -->
+  <section>
+    <!-- topnav -->
+    <ul class="nav justify-content-end" style="">
+      <form action="event.php" method="post" enctype="multipart/form-data">
+      <li class="nav-item" style="margin: 3px">
+        <!-- <form action="event.php" method="post" class="d-flex" role="search"> -->
+          <input class="form-control me-3 my-2" type="search" placeholder="Search" aria-label="Search"
+            style="border-radius: 30px" />
+          <button class="btn btn-outline-success mx-3 " type="submit">
+            Search
+          </button>
+          <!-- </from> -->
+      </li>
+      <li>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Post Event
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Post Event</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <!-- eventfrom -->
+              <!-- <form action="event.php" method="post" enctype="multipart/form-data"> -->
+                <div class="container" style="height: 100%; width: 70%">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Event Title</label>
+                    <input type="text" class="form-control" name="eventtitle" placeholder="Event Title" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Event Short Description</label>
+                    <input type="text" class="form-control" name="esd" placeholder="Event Short Description" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Event Description</label>
+                    <textarea class="form-control" name="ed" rows="3"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Registration Link</label>
+                    <input type="text" class="form-control" name="reglink" placeholder="Registration Link" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Image</label>
+                    <input type="file" class="form-control" name="eventImg">
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label for="exampleFormControlInput1" class="form-label">Location</label>
+                      <input type="text" class="form-control" placeholder="Location" name="loc" aria-label="location" />
+                    </div>
+                    <div class="col">
+                      <label for="exampleFormControlInput1" class="form-label">Date</label>
+                      <input type="number" class="form-control" placeholder="Date" name="date" aria-label="date" />
+                    </div>
+                    <div class="col">
+                      <label for="exampleFormControlInput1" class="form-label">Time</label>
+                      <input type="number" class="form-control" placeholder="time" name="time" aria-label="date" />
+                    </div>
+                  </div>
+                  <div class="d-grid gap-2 my-4 col-6 mx-auto">
+                    <button class="btn btn-outline-success" type="submit" name="submit">Submit</button>
+                  </div>
+                </div>
+              <!-- </form> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      </li>
+      </from>
+    </ul>
+    <div class="container shadow my-5">
+      <div class="row g-0">
+        <div class="col-2">
+          <img src="https://th.bing.com/th/id/OIP.fVtJLs1fL_bWCPibRdYhQQHaEK?pid=ImgDet&rs=1" class="img-fluid"
+            alt="..." style="height: 200px; width: 200px" />
+        </div>
+        <div class="col-10">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-10">
+                <h5 class="card-title">Event_1</h5>
+                <p class="card-text"></p>
+                <p class="card-text">
+                  <small class="text-muted"></small>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Incidunt assumenda ut corrupti vero cupiditate laboriosam
+                  expedita magni quidem quibusdam deleniti sequi repellendus
+                  ducimus id quis sed ipsa, est in officia!
+                </p>
+              </div>
+              <div class="col-2">
+                <br />
+                <br />
+                <br>
+                <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                  <a href="eventdes.php" class="btn btn-outline-success">Details</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
