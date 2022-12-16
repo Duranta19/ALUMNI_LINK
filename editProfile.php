@@ -81,7 +81,7 @@ if(isset($_POST['submit'])){
   <body>
 
     <section class="" style="justify-content:center;">
-        <div class="container-fluid w-75 h-75 my-5 shadow p-3 mb-5 rounded" style="background:White;" style="">
+        <div class="container-fluid w-75 h-75 my-5 shadow p-3 mb-5 rounded" style="background:White;">
         <form action="editprofile.php?acc_id=<?php echo $acc_id;?>" method="post" enctype="multipart/form-data">
             <div class="row g-0">
                 <div class="col-md-3 ">
