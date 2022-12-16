@@ -1,7 +1,7 @@
 <?php
 session_start();
 $user_name = $_SESSION['username'];
-$acc_id = $_SESSION['userID'];
+$acc_id = $_GET['acc_id'];
 if (!$_SESSION['loggedin']) {
   header("Location: login.php");
 }
@@ -9,10 +9,9 @@ include('components/dbconnect.php');
 $sql = "SELECT * FROM `user_info` WHERE user_info.acc_id = '$acc_id';";
 $result = mysqli_query($conn, $sql);
 $data = mysqli_fetch_assoc($result);
-$numOfRows = mysqli_num_rows($result);
-if ($numOfRows == 0) {
-  header("Location: editprofile.php?acc_id=" . $acc_id);
-}
+$sql2 = "SELECT * FROM `accounts` WHERE accounts.acc_id = '$acc_id';";
+$result2 = mysqli_query($conn, $sql2);
+$data2 = mysqli_fetch_assoc($result2);
 
 $skill_arr = explode(",", $data['skills']);
 $lng_arr = explode(",", $data['language']);
@@ -128,7 +127,7 @@ $lng_arr = explode(",", $data['language']);
             <div class="text-center">
               <img src="img/<?php echo $data['photo_loc']; ?>" class="" alt="..." style="height:150px; width:150px; border-radius: 50%;">
             </div>
-            <h5 class="card-title text-center"><b><?php echo $user_name; ?></b></h5>
+            <h5 class="card-title text-center"><b><?php echo $data2['user_name']; ?></b></h5>
             <p class="text-center">loo : 21+</p>
             <p class="text-center"><?php echo $data['address']; ?></p>
             <hr>
@@ -233,29 +232,9 @@ $lng_arr = explode(",", $data['language']);
 
               <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div class="container">
-                  <form action="userProfile.php" method="post">
-                    <label class="mt-4" for="experience_titel">
-                      <h5>Share Your Experience</h5>
-                    </label>
-                    <input type="text" class="form-control mb-2" id="position" placeholder="Position" name="position" style="width: 50%">
-                    <input type="text" class="form-control mb-2" id="company" placeholder="Company" name="company" style="width: 50%">
-                    <div class="row">
-                      <div class="col">
-                        <label for="leaveDate">From</label>
-                        <input type="date" class="form-control mb-2" id="joinDate" placeholder="Join Date" name="joinDate">
-                      </div>
-                      <div class="col">
-                        <label for="leaveDate">To</label>
-                        <input type="date" class="form-control mb-2" id="leaveDate" placeholder="Leave Date" name="leaveDate">
-                      </div>
-                      <div class="col"></div>
-                    </div>
-                    <textarea class="form-control mb-2" id="experience" name="experience" placeholder="Description" style="width: 70%" rows="3"></textarea>
-                    <button type="submit" class="btn btn-dark" name="experiences">Add Experience</button>
-                  </form>
                   <?php
                   include('components/dbconnect.php');
-                  $acc_id = $_SESSION['userID'];
+                  $acc_id = $_GET['acc_id'];
                   if (isset($_POST['experiences'])) {
                     $position = $_POST['position'];
                     $company = $_POST['company'];
@@ -271,7 +250,7 @@ $lng_arr = explode(",", $data['language']);
                   <?php
                   include('components/dbconnect.php');
                   $sql2 = "SELECT * FROM `user_experience` WHERE acc_id= '$acc_id' ;";
-                  $result2 = mysqli_query($conn, $sql2);
+                   $result2 = mysqli_query($conn, $sql2);
                   while ($row = mysqli_fetch_assoc($result2)) {
                   ?>
                     <main class="py-4 container">
@@ -291,17 +270,9 @@ $lng_arr = explode(",", $data['language']);
 
               <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <div class="container">
-                  <form action="userProfile.php" method="post">
-                    <label class="mt-4" for="achievement_titel">
-                      <h5>Share Your Achivements</h5>
-                    </label>
-                    <input type="text" class="form-control mb-2" id="achievement_titel" placeholder="Titel" name="achievement_titel" style="width: 40%">
-                    <textarea class="form-control mb-2" id="achievements" name="achievements" placeholder="Description" style="width: 60%" rows="3"></textarea>
-                    <button type="submit" class="btn btn-dark" name="achievement">Add Achievements</button>
-                  </form>
                   <?php
                   include('components/dbconnect.php');
-                  $acc_id = $_SESSION['userID'];
+                  $acc_id = $_GET['acc_id'];
                   if (isset($_POST['achievement'])) {
                     $achievement_titel = $_POST['achievement_titel'];
                     $achievement = $_POST['achievements'];
