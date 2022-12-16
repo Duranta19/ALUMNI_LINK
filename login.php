@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
   }
   // echo $userId;
   // echo $password;
-  $sql = "SELECT * FROM `accounts` WHERE user_id = $userId";
+  $sql = "SELECT * FROM `accounts` WHERE user_id = '$userId'";
   $result = mysqli_query($conn,$sql);
   $numRows = mysqli_num_rows($result);
   if($numRows == 1){
@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
   else {
     $login_error = "Invalid Credentials";
   }
-  if($category == 'Alumni'){
+  if($category == 'Alumni' or $category == 'Student' ){
     header("Location: userProfile.php");
   }
 }

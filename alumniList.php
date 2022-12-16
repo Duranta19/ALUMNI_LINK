@@ -1,3 +1,7 @@
+<?php
+$chk = false;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,7 +62,7 @@
                 </a>
             </li>
             <li>
-                <a href="Alumni List">
+                <a href="alumniList.php">
                     <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
                     Alumni
                 </a>
@@ -82,7 +86,7 @@
                 </a>
             </li>
             <li>
-                <a href="event.html">
+                <a href="event.php">
                     <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
                     Events
                 </a>
@@ -101,14 +105,16 @@
             </li>
         </ul>
     </div>
-   
+
     <section>
+
         <ul class="nav justify-content-end">
             <li class="nav-item" style=" margin:10px;">
                 <form action="alumniList.php" method="GET" class="d-flex" role="search">
                     <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
                                                                                             echo $_GET['search'];
-                                                                                        } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                                                                                        }
+                                                                                        $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
                     <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
                 </form>
             </li>
@@ -120,7 +126,7 @@
         <div class="container">
             <?php
             include('components/dbconnect.php');
-            if (isset($_GET['search'])) {
+            if (isset($_GET['search']) && $chk != false) {
                 $search = $_GET['search'];
                 $sql2 = "SELECT * FROM `accounts` INNER JOIN `user_info` ON accounts.category like 'Alumni' and accounts.acc_id = user_info.acc_id 
             WHERE  accounts.user_name LIKE '%$search%' OR user_info.skills LIKE '%$search%' or user_info.address LIKE '%$search%';";
@@ -154,8 +160,43 @@
                         </main>
                     </div>
 
+                <?php }
+            } else {
+                include('components/dbconnect.php');
+                $sql3 = "SELECT * FROM `accounts` INNER JOIN `user_info` ON accounts.category like 'Alumni' and accounts.acc_id = user_info.acc_id 
+                WHERE  1;";
+                $result3 = mysqli_query($conn,$sql3);
+                while ($row = mysqli_fetch_assoc($result3)) {
+                ?>
+                    <div class="container">
+                        <main class="container">
+                            <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2 align-self-center">
+                                        <img class="py-2 px-2" style="height: auto; width:100%; border-radius: 50%;" src="img/<?php echo $row['photo_loc'] ?>" alt="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card-body" style="text-align: center;">
+                                            <a style="text-decoration:none; color:#063146;" href="profile.php?acc_id= <?php echo $row['acc_id']; ?>">
+                                                <h5 class="card-title"> <?php echo $row['user_name'] ?></h5>
+                                            </a>
+                                            <p class="card-text">Skills: <?php echo $row['skills'] ?></p>
+                                            <p class="card-text">Address: <?php echo $row['address'] ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-body">
+                                            <h6>About</h6>
+                                            <p class="card-text"><?php echo $row['about_me'] ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
             <?php }
             } ?>
+
         </div>
     </section>
 </body>

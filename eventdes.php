@@ -1,3 +1,20 @@
+<?php
+session_start();
+$user_name = $_SESSION['username'];
+$acc_id = $_SESSION['userID'];
+$eid = $_GET['e_id'];
+if (!$_SESSION['loggedin']) {
+  header("Location: login.php");
+}
+include('components/dbconnect.php');
+$sql = "SELECT * FROM `event_info` WHERE event_info.event_id = '$eid';";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
+$numOfRows = mysqli_num_rows($result);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +22,11 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Event Details</title>
   <!-- <link rel="stylesheet" href="components/navstyle.css" /> -->
   <link rel="stylesheet" href="components/navstyle.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <script src="https://kit.fontawesome.com/e06a26c5f2.js" crossorigin="anonymous"></script>
   <style>
     .mainBody {
@@ -28,8 +44,7 @@
   </label>
   <div class="sidebar">
     <header>
-      <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt=""
-        style="height: 45px; width: 45px" />
+      <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
       Alumni_Linked
     </header>
     <ul>
@@ -40,7 +55,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="alumniList.php">
           <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
           Alumni
         </a>
@@ -86,37 +101,32 @@
 
   <!-- event -->
   <section>
+    <div class="container" style="border-radius: 15px; width: 50%">
+      <img src="eventImg/<?php echo $data['event_img']; ?>" class="img-fluid" alt="..." >
+    </div>
     <div class="container">
       <div class="row g-0">
         <div class="card mb-3">
-          <img src="https://th.bing.com/th/id/OIP.fVtJLs1fL_bWCPibRdYhQQHaEK?pid=ImgDet&rs=1" class="card-img-top"
-            alt="..." align="middle" style="width: 600px; height: 300px" />
-          <div class="card-body">
+          <div class=" card-body">
             <h5 class="card-title">Events</h5>
-            <label for="number" class="col-sm-2 col-form-label">Date: 12.10.2022</label>
+            <label for="number" class="col-sm-2 col-form-label">Date: <?php echo $data['date']; ?></label>
             <br />
-            <label for="number" class="col-sm-2 col-form-label">Time: 12:00</label>
+            <label for="number" class="col-sm-2 col-form-label">Time: <?php echo $data['time']; ?></label>
             <div class="card-body">
               <h5 class="card-title">Description</h5>
-              This is some text within a card body.
+              <?php echo $data['event_details']; ?>
             </div>
           </div>
           <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
-            <button class="btn btn-outline-success me-md-2" type="button">
-              Registration
-            </button>
+          <a href="<?php echo $data['registration_link']; ?>" target="_blank" class="btn btn-outline-success "> Registration</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
