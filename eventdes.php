@@ -107,6 +107,12 @@ $numOfRows = mysqli_num_rows($result);
     <div class="container">
       <div class="row g-0">
         <div class="card mb-3">
+<<<<<<< refs/remotes/origin/main
+=======
+          <div class="container justify-content-center">
+            <img src="img/<?php echo $data['event_img']; ?>" class="img-fluid" alt="..." style="height: 200px; width: 200px" ">
+          </div>
+>>>>>>> Add event, Post event, event details
           <div class=" card-body">
             <h5 class="card-title">Events</h5>
             <label for="number" class="col-sm-2 col-form-label">Date: <?php echo $data['date']; ?></label>

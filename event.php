@@ -148,15 +148,27 @@ if (isset($_POST['submit'])) {
             </li> -->
         </ul>
     <!-- topnav -->
+<<<<<<< refs/remotes/origin/main
     <ul class="nav justify-content-end">
+=======
+    <ul class="nav justify-content-end" style="">
+>>>>>>> Add event, Post event, event details
       <li class="nav-item" style="margin: 3px">
         <form action="event.php" method="post" class="d-flex" enctype="multipart/form-data">
 
           <!-- <form action="event.php" method="post" class="d-flex" role="search"> -->
+<<<<<<< refs/remotes/origin/main
+=======
+          <input class="form-control me-3 my-2" type="search" placeholder="Search" aria-label="Search" style="border-radius: 30px" />
+          <button class="btn btn-outline-success me-3 my-2 mx-3 " type="submit">
+            Search
+          </button>
+>>>>>>> Add event, Post event, event details
           <!-- </from> -->
 
       <li>
         <!-- Button trigger modal -->
+<<<<<<< refs/remotes/origin/main
         <div class="container">
         <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Post an Event
@@ -164,6 +176,12 @@ if (isset($_POST['submit'])) {
 
         </div>
 
+=======
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Post Event
+        </button>
+
+>>>>>>> Add event, Post event, event details
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -231,11 +249,18 @@ if (isset($_POST['submit'])) {
     $result2 = mysqli_query($conn, $sql2);
     while ($row = mysqli_fetch_assoc($result2)) { ?>
 
+<<<<<<< refs/remotes/origin/main
       <div class="container" >
       <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
       <div class="row g-0">
           <div class="col-2">
             <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+=======
+      <div class="container shadow my-5">
+        <div class="row g-0">
+          <div class="col-2">
+            <img src="img/<?php echo $row['event_img']; ?>" class="img-fluid" alt="..." style="height: 200px; width: 200px" />
+>>>>>>> Add event, Post event, event details
           </div>
           <div class="col-10">
             <div class="card-body">
@@ -253,7 +278,11 @@ if (isset($_POST['submit'])) {
                   <br />
                   <br>
                   <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+<<<<<<< refs/remotes/origin/main
                     <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
+=======
+                    <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-success">Details</a>
+>>>>>>> Add event, Post event, event details
                     </button>
                   </div>
                 </div>
@@ -262,8 +291,11 @@ if (isset($_POST['submit'])) {
           </div>
         </div>
       </div>
+<<<<<<< refs/remotes/origin/main
         
       </div>
+=======
+>>>>>>> Add event, Post event, event details
     <?php } ?>
 
 
