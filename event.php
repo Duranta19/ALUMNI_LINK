@@ -1,7 +1,7 @@
 <?php
 // include('components/dbConnect.php');
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
   include('components/dbConnect.php');
   $eventtitle = $_POST['eventtitle'];
@@ -11,20 +11,19 @@ if(isset($_POST['submit'])){
   $location = $_POST['loc'];
   $date = $_POST['date'];
   $time = $_POST['time'];
-  
-  $pic_name= $_FILES['eventImg']['name'];
-  $pic_loc= $_FILES['eventImg']['tmp_name'];
-  $upload_loc='img/'.$pic_name;
 
-  $sql= "INSERT INTO `event_info` (`event_title`, `date`, `time`, `location`, `event_details`, `event_short_details`, `registration_link`, `event_img`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name')";
-  $result=mysqli_query($conn,$sql);
+  $pic_name = $_FILES['eventImg']['name'];
+  $pic_loc = $_FILES['eventImg']['tmp_name'];
+  $upload_loc = 'img/' . $pic_name;
+
+  $sql = "INSERT INTO `event_info` (`event_title`, `date`, `time`, `location`, `event_details`, `event_short_details`, `registration_link`, `event_img`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name')";
+  $result = mysqli_query($conn, $sql);
   // $resultRows = mysqli_num_rows($result);
 
-  if($result){
-    move_uploaded_file($pic_loc,$upload_loc);
+  if ($result) {
+    move_uploaded_file($pic_loc, $upload_loc);
     header("Location: event.php");
-  }
-  else{
+  } else {
     echo "Failed";
   }
 }
@@ -41,12 +40,30 @@ if(isset($_POST['submit'])){
   <!-- <link rel="stylesheet" href="components/navstyle.css" /> -->
   <link rel="stylesheet" href="components/navstyle.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <script src="https://kit.fontawesome.com/e06a26c5f2.js" crossorigin="anonymous"></script>
   <style>
     .mainBody {
       background: #ffffff;
+    }
+  </style>
+  <style>
+    .mainBody {
+      background: #ffffff;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(138, 169, 171, 0.5);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(138, 169, 171, 1);
+    }
+
+    .container {
+      padding: 2px 16px;
+
     }
   </style>
 </head>
@@ -60,8 +77,7 @@ if(isset($_POST['submit'])){
   </label>
   <div class="sidebar">
     <header>
-      <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt=""
-        style="height: 45px; width: 45px" />
+      <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
       Alumni_Linked
     </header>
     <ul>
@@ -72,7 +88,7 @@ if(isset($_POST['submit'])){
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="alumniList.php">
           <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
           Alumni
         </a>
@@ -118,36 +134,48 @@ if(isset($_POST['submit'])){
 
   <!-- event -->
   <section>
+  <ul class="nav justify-content-end">
+            <li class="nav-item" style=" margin:10px;">
+                <form action="alumniList.php" method="GET" class="d-flex" role="search">
+                    <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
+                                                                                            echo $_GET['search'];
+                                                                                        } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                    <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
+                </form>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="btn btn-primary" href="#" role="button" style="margin-left:5px; margin-right:5px; border-radius:50px;">Edit Profile</a>
+            </li> -->
+        </ul>
     <!-- topnav -->
-    <ul class="nav justify-content-end" style="">
-      <form action="event.php" method="post" enctype="multipart/form-data">
+    <ul class="nav justify-content-end">
       <li class="nav-item" style="margin: 3px">
-        <!-- <form action="event.php" method="post" class="d-flex" role="search"> -->
-          <input class="form-control me-3 my-2" type="search" placeholder="Search" aria-label="Search"
-            style="border-radius: 30px" />
-          <button class="btn btn-outline-success mx-3 " type="submit">
-            Search
-          </button>
+        <form action="event.php" method="post" class="d-flex" enctype="multipart/form-data">
+
+          <!-- <form action="event.php" method="post" class="d-flex" role="search"> -->
           <!-- </from> -->
-      </li>
+
       <li>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Post Event
-      </button>
+        <!-- Button trigger modal -->
+        <div class="container">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Post an Event
+        </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Post Event</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+        </div>
 
-              <!-- eventfrom -->
-              <!-- <form action="event.php" method="post" enctype="multipart/form-data"> -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Post Event</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <!-- eventfrom -->
+                <!-- <form action="event.php" method="post" enctype="multipart/form-data"> -->
                 <div class="container" style="height: 100%; width: 70%">
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Event Title</label>
@@ -176,71 +204,77 @@ if(isset($_POST['submit'])){
                     </div>
                     <div class="col">
                       <label for="exampleFormControlInput1" class="form-label">Date</label>
-                      <input type="number" class="form-control" placeholder="Date" name="date" aria-label="date" />
+                      <input type="date" class="form-control" placeholder="Date" name="date" aria-label="date" />
                     </div>
                     <div class="col">
                       <label for="exampleFormControlInput1" class="form-label">Time</label>
-                      <input type="number" class="form-control" placeholder="time" name="time" aria-label="date" />
+                      <input type="time" class="form-control" placeholder="time" name="time" aria-label="date" />
                     </div>
                   </div>
                   <div class="d-grid gap-2 my-4 col-6 mx-auto">
-                    <button class="btn btn-outline-success" type="submit" name="submit">Submit</button>
+                    <button class="btn btn-outline-dark" type="submit" name="submit">Submit</button>
                   </div>
                 </div>
-              <!-- </form> -->
+                <!-- </form> -->
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </li>
-      </from>
+      </form>
+      </li>
     </ul>
-    <div class="container shadow my-5">
+
+    <?php
+    include('components/dbconnect.php');
+    $sql2 = "SELECT * FROM `event_info` WHERE 1;";
+    $result2 = mysqli_query($conn, $sql2);
+    while ($row = mysqli_fetch_assoc($result2)) { ?>
+
+      <div class="container" >
+      <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
       <div class="row g-0">
-        <div class="col-2">
-          <img src="https://th.bing.com/th/id/OIP.fVtJLs1fL_bWCPibRdYhQQHaEK?pid=ImgDet&rs=1" class="img-fluid"
-            alt="..." style="height: 200px; width: 200px" />
-        </div>
-        <div class="col-10">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-10">
-                <h5 class="card-title">Event_1</h5>
-                <p class="card-text"></p>
-                <p class="card-text">
-                  <small class="text-muted"></small>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt assumenda ut corrupti vero cupiditate laboriosam
-                  expedita magni quidem quibusdam deleniti sequi repellendus
-                  ducimus id quis sed ipsa, est in officia!
-                </p>
-              </div>
-              <div class="col-2">
-                <br />
-                <br />
-                <br>
-                <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
-                  <a href="eventdes.php" class="btn btn-outline-success">Details</a>
-                  </button>
+          <div class="col-2">
+            <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-10">
+                  <h5 class="card-title"><?php echo $row['event_title'] ?></h5>
+                  <p class="card-text"></p>
+                  <p class="card-text">
+                    <small class="text-muted"></small>
+                    <?php echo $row['event_short_details'] ?>
+                  </p>
+                </div>
+                <div class="col-2">
+                  <br />
+                  <br />
+                  <br>
+                  <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                    <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+        
+      </div>
+    <?php } ?>
+
+
 
   </section>
 
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 include("components/dbconnect.php");
 $error = false;
 $result ="";
-$q_num = 0;
+$q_num = 1;
 if (isset($_POST['submit'])) {
     $qTitle = $_POST['qusTitle'];
     $qCode = $_POST['qusCode'];
