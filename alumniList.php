@@ -39,6 +39,23 @@ $chk = false;
             padding: 2px 16px;
 
         }
+
+        .dropdown-menu {
+            position: absolute;
+            z-index: 1000;
+            display: none;
+            min-width: 10rem;
+            padding: .5rem 0;
+            margin: 0;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #063146;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: .25rem;
+        }
     </style>
 </head>
 
@@ -73,11 +90,12 @@ $chk = false;
                     Jobs
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-                    Job Preparation
-                </a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Blogs</a></li>
+                    <li><a class="dropdown-item" href="#">Quiz</a></li>
+                </ul>
             </li>
             <li>
                 <a href="#">
@@ -165,7 +183,7 @@ $chk = false;
                 include('components/dbconnect.php');
                 $sql3 = "SELECT * FROM `accounts` INNER JOIN `user_info` ON accounts.category like 'Alumni' and accounts.acc_id = user_info.acc_id 
                 WHERE  1;";
-                $result3 = mysqli_query($conn,$sql3);
+                $result3 = mysqli_query($conn, $sql3);
                 while ($row = mysqli_fetch_assoc($result3)) {
                 ?>
                     <div class="container">
@@ -199,6 +217,8 @@ $chk = false;
 
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

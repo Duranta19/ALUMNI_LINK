@@ -6,14 +6,14 @@ echo $qus_num;
 $msgg = "";
 
 $sql2 = "SELECT * FROM `qus_info` WHERE qus_code = '$qus_code'";
-$result2 = mysqli_query($conn, $sql2);
+$result2 = mysqli_query($conn,$sql2);
 $data = mysqli_fetch_assoc($result2);
 $totalQus = $data['total_qus'];
-$qus_title = $data['qus_title'];
-if ($qus_num > $totalQus) {
+$qus_title =$data['qus_title'];
+if($qus_num > $totalQus){
     header("Location: postQuiz.php");
 }
-if (isset($_POST['set'])) {
+if(isset($_POST['set'])){
 
     $qus = $_POST['qus'];
     $option1 = $_POST['option1'];
@@ -22,18 +22,20 @@ if (isset($_POST['set'])) {
     $option4 = $_POST['option4'];
     $corrOption = $_POST['corrOption'];
     echo $qus;
-    if ($qus != "" && $option1 != "" && $option2 != "" && $option3 != "" && $option4 != "" && $corrOption != "") {
+    if($qus != "" && $option1 != "" && $option2 != "" && $option3 != "" && $option4 != "" && $corrOption != ""){
         $sql = "INSERT INTO `qus_details` (`qus_code`, `ques`, `option1`, `option2`, `option3`, `option4`, `corr_option`) 
                 VALUES ('$qus_code', '$qus', '$option1', '$option2', '$option3', '$option4', '$corrOption');";
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            $qus_num = (int)$qus_num + 1;
-            header("Location: setQuiz.php?q_code=" . $qus_code . "& q_num= " . $qus_num);
+        $result = mysqli_query($conn,$sql);
+        if($result){
+            $qus_num = (int)$qus_num +1;
+            header("Location: setQuiz.php?q_code=" . $qus_code."& q_num= ". $qus_num);
         }
     }
+
 }
 
 ?>
+
 
 <!DOCTYPE html>
 
@@ -76,7 +78,7 @@ if (isset($_POST['set'])) {
                 <div class="card-body">
                     <p>
                         <label for="formGroupExampleInput" class="form-label">Question No.</label>
-                        <input type="text" class="form-control" Value="<?php echo $qus_num; ?>" style="height: 25px; width: 100px;">
+                        <input type="text" class="form-control" Value="<?php echo $qus_num;?>" style="height: 25px; width: 100px;">
                     </p>
 
                     <div class="container w-75">
@@ -103,7 +105,7 @@ if (isset($_POST['set'])) {
                     </div>
 
                     <label for="formGroupExampleInput" class="form-label">Correct Option Number</label>
-                    <input type="number" class="form-control" name="corrOption" style="height: 25px; width: 60px;">
+                    <input type="number" class="form-control"  name="corrOption" style="height: 25px; width: 60px;">
                     <br>
 
                     <input type="submit" class="btn btn-primary" name="set" value="Set">

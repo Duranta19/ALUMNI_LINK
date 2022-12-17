@@ -45,11 +45,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-sm-10">
-              <h5 class="card-title"><?php echo $row['qus_code']; ?></h5>
+              <h5 class="card-title"><?php echo $row['qus_title']; ?> (<?php echo$row['qus_code']; ?>)</h5>
               <p class="card-text"><?php echo $row['qus_des']; ?></p>
+              <p class="card-text">Total Questions : <?php echo $row['total_qus']; ?></p>
             </div>
             <div class="col-sm-2">
-              <a href="quiz.html" class="btn btn-primary m-auto ">Attemp</a>
+              <a href="quiz.php?quiz_code=<?php echo $row['qus_code'] ?>" class="btn btn-primary m-auto ">Attemp</a>
             </div>
           </div>
         </div>

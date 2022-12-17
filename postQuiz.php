@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
     <?php
     if (!$error) {
         echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Login Successfull!</strong>
+            <strong>Post Successfull!</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div> ';
     } else {
