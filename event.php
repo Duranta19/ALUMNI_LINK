@@ -65,6 +65,23 @@ if (isset($_POST['submit'])) {
       padding: 2px 16px;
 
     }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 1000;
+      display: none;
+      min-width: 10rem;
+      padding: .5rem 0;
+      margin: 0;
+      font-size: 1rem;
+      color: #212529;
+      text-align: left;
+      list-style: none;
+      background-color: #063146;
+      background-clip: padding-box;
+      border: 1px solid rgba(0, 0, 0, .15);
+      border-radius: .25rem;
+    }
   </style>
 </head>
 
@@ -99,11 +116,12 @@ if (isset($_POST['submit'])) {
           Jobs
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-          Job Preparation
-        </a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Blogs</a></li>
+          <li><a class="dropdown-item" href="#">Quiz</a></li>
+        </ul>
       </li>
       <li>
         <a href="#">
@@ -134,19 +152,19 @@ if (isset($_POST['submit'])) {
 
   <!-- event -->
   <section>
-  <ul class="nav justify-content-end">
-            <li class="nav-item" style=" margin:10px;">
-                <form action="alumniList.php" method="GET" class="d-flex" role="search">
-                    <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
-                                                                                            echo $_GET['search'];
-                                                                                        } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
-                    <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
-                </form>
-            </li>
-            <!-- <li class="nav-item">
+    <ul class="nav justify-content-end">
+      <li class="nav-item" style=" margin:10px;">
+        <form action="alumniList.php" method="GET" class="d-flex" role="search">
+          <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
+                                                                                echo $_GET['search'];
+                                                                              } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+          <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
+        </form>
+      </li>
+      <!-- <li class="nav-item">
                 <a class="btn btn-primary" href="#" role="button" style="margin-left:5px; margin-right:5px; border-radius:50px;">Edit Profile</a>
             </li> -->
-        </ul>
+    </ul>
     <!-- topnav -->
     <ul class="nav justify-content-end">
       <li class="nav-item" style="margin: 3px">
@@ -158,9 +176,9 @@ if (isset($_POST['submit'])) {
       <li>
         <!-- Button trigger modal -->
         <div class="container">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Post an Event
-        </button>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Post an Event
+          </button>
 
         </div>
 
@@ -231,39 +249,39 @@ if (isset($_POST['submit'])) {
     $result2 = mysqli_query($conn, $sql2);
     while ($row = mysqli_fetch_assoc($result2)) { ?>
 
-      <div class="container" >
-      <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
-      <div class="row g-0">
-          <div class="col-2">
-            <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
-          </div>
-          <div class="col-10">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-10">
-                  <h5 class="card-title"> <?php echo strrev($row['event_title']); ?></h5>
-                  <p class="card-text"></p>
-                  <p class="card-text">
-                    <small class="text-muted"></small>
-                    <?php echo $row['event_short_details'] ?>
-                  </p>
-                </div>
-                <div class="col-2">
-                  <br />
-                  <br />
-                  <br>
-                  <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
-                    <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
-                    </button>
+      <div class="container">
+        <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+          <div class="row g-0">
+            <div class="col-2">
+              <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-10">
+                    <h5 class="card-title"> <?php echo strrev($row['event_title']); ?></h5>
+                    <p class="card-text"></p>
+                    <p class="card-text">
+                      <small class="text-muted"></small>
+                      <?php echo $row['event_short_details'] ?>
+                    </p>
+                  </div>
+                  <div class="col-2">
+                    <br />
+                    <br />
+                    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                      <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
-      </div>
-        
       </div>
     <?php } ?>
 

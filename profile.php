@@ -67,12 +67,13 @@ $lng_arr = explode(",", $data['language']);
           Jobs
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-          Job Preparation
-        </a>
-      </li>
+<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Blogs</a></li>
+                    <li><a class="dropdown-item" href="#">Quiz</a></li>
+                </ul>
+            </li>
       <li>
         <a href="#">
           <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>

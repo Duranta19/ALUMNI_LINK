@@ -32,6 +32,23 @@ $numOfRows = mysqli_num_rows($result);
     .mainBody {
       background: #ffffff;
     }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 1000;
+      display: none;
+      min-width: 10rem;
+      padding: .5rem 0;
+      margin: 0;
+      font-size: 1rem;
+      color: #212529;
+      text-align: left;
+      list-style: none;
+      background-color: #063146;
+      background-clip: padding-box;
+      border: 1px solid rgba(0, 0, 0, .15);
+      border-radius: .25rem;
+    }
   </style>
 </head>
 
@@ -66,11 +83,12 @@ $numOfRows = mysqli_num_rows($result);
           Jobs
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-          Job Preparation
-        </a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Blogs</a></li>
+          <li><a class="dropdown-item" href="#">Quiz</a></li>
+        </ul>
       </li>
       <li>
         <a href="#">
@@ -101,15 +119,15 @@ $numOfRows = mysqli_num_rows($result);
 
   <!-- event -->
   <section>
-    
-    <div class="container" >
-      <center>      <img src="eventImg/<?php echo $data['event_img']; ?>" style="border-radius: 15px; width: 50%" class="img-fluid" alt="..." >
-</center>
+
+    <div class="container">
+      <center> <img src="eventImg/<?php echo $data['event_img']; ?>" style="border-radius: 15px; width: 50%" class="img-fluid" alt="...">
+      </center>
     </div>
-    
+
     <div class="container py-2 justify-content-center" style="text-align: center">
-          <a href="<?php echo $data['registration_link']; ?>" target="_blank" class="btn btn-outline-dark "> Registration</a>
-          </div>
+      <a href="<?php echo $data['registration_link']; ?>" target="_blank" class="btn btn-outline-dark "> Registration</a>
+    </div>
     <div class="container">
       <div class="row g-0">
         <div class="card mb-3">
