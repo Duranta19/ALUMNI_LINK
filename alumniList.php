@@ -98,7 +98,7 @@ $chk = false;
                 </a>
             </li>
             <li>
-                <a href="#" class="signout">
+                <a href="logout.php" class="signout">
                     <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
                     Sign Out
                 </a>
@@ -129,7 +129,7 @@ $chk = false;
             if (isset($_GET['search']) && $chk != false) {
                 $search = $_GET['search'];
                 $sql2 = "SELECT * FROM `accounts` INNER JOIN `user_info` ON accounts.category like 'Alumni' and accounts.acc_id = user_info.acc_id 
-            WHERE  accounts.user_name LIKE '%$search%' OR user_info.skills LIKE '%$search%' or user_info.address LIKE '%$search%';";
+            WHERE  accounts.user_name LIKE '%$search%' OR user_info.skills LIKE '%$search%' OR user_info.about_me LIKE '%$search%' or user_info.address LIKE '%$search%';";
                 $result2 = mysqli_query($conn, $sql2);
                 while ($row = mysqli_fetch_assoc($result2)) {
             ?>

@@ -138,14 +138,14 @@ $lng_arr = explode(",", $data['language']);
             <!-- <button type="button" class="btn btn-outline-primary">Primary</button> -->
             <?php
             for ($i = 0; $i < sizeof($skill_arr); $i++) {
-              echo '<button type="button" class="btn btn-outline-primary" style="margin:2px;">' . $skill_arr[$i] . '</button>';
+              echo '<button type="button" class="btn btn-outline-dark" style="margin:2px;">' . $skill_arr[$i] . '</button>';
             }
             ?>
             <hr>
             <h5 class="card-title"> Language</h5>
             <?php
             for ($i = 0; $i < sizeof($lng_arr); $i++) {
-              echo '<button type="button" class="btn btn-outline-primary" style="margin:2px;">' . $lng_arr[$i] . '</button>';
+              echo '<button type="button" class="btn btn-outline-dark" style="margin:2px;">' . $lng_arr[$i] . '</button>';
             }
             ?>
             <hr>
@@ -179,9 +179,9 @@ $lng_arr = explode(",", $data['language']);
                         <hr> -->
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Education</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Experience</button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Achivements</button>
+                <button class="nav-link active" id="nav-home-tab" style="color: #042331;" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Education</button>
+                <button class="nav-link" id="nav-profile-tab" style="color: #042331;" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Experience</button>
+                <button class="nav-link" id="nav-contact-tab" style="color: #042331;" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Achivements</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">

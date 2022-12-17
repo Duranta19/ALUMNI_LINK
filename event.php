@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
         </a>
       </li>
       <li>
-        <a href="event.html">
+        <a href="event.php">
           <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
           Events
         </a>
@@ -241,7 +241,7 @@ if (isset($_POST['submit'])) {
             <div class="card-body">
               <div class="row">
                 <div class="col-10">
-                  <h5 class="card-title"><?php echo $row['event_title'] ?></h5>
+                  <h5 class="card-title"> <?php echo strrev($row['event_title']); ?></h5>
                   <p class="card-text"></p>
                   <p class="card-text">
                     <small class="text-muted"></small>
@@ -261,6 +261,7 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
         </div>
+
       </div>
         
       </div>

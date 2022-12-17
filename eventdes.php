@@ -79,7 +79,7 @@ $numOfRows = mysqli_num_rows($result);
         </a>
       </li>
       <li>
-        <a href="event.html">
+        <a href="event.php">
           <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
           Events
         </a>
@@ -101,14 +101,20 @@ $numOfRows = mysqli_num_rows($result);
 
   <!-- event -->
   <section>
-    <div class="container" style="border-radius: 15px; width: 50%">
-      <img src="eventImg/<?php echo $data['event_img']; ?>" class="img-fluid" alt="..." >
+    
+    <div class="container" >
+      <center>      <img src="eventImg/<?php echo $data['event_img']; ?>" style="border-radius: 15px; width: 50%" class="img-fluid" alt="..." >
+</center>
     </div>
+    
+    <div class="container py-2 justify-content-center" style="text-align: center">
+          <a href="<?php echo $data['registration_link']; ?>" target="_blank" class="btn btn-outline-dark "> Registration</a>
+          </div>
     <div class="container">
       <div class="row g-0">
         <div class="card mb-3">
           <div class=" card-body">
-            <h5 class="card-title">Events</h5>
+            <h5 class="card-title"><?php echo $data['event_title']; ?></h5>
             <label for="number" class="col-sm-2 col-form-label">Date: <?php echo $data['date']; ?></label>
             <br />
             <label for="number" class="col-sm-2 col-form-label">Time: <?php echo $data['time']; ?></label>
@@ -116,9 +122,6 @@ $numOfRows = mysqli_num_rows($result);
               <h5 class="card-title">Description</h5>
               <?php echo $data['event_details']; ?>
             </div>
-          </div>
-          <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
-          <a href="<?php echo $data['registration_link']; ?>" target="_blank" class="btn btn-outline-success "> Registration</a>
           </div>
         </div>
       </div>
