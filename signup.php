@@ -42,7 +42,7 @@ if (isset($_POST['signup'])) {
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
 
-<body class="header" style="background-color:#dcf3e3">
+<body class="header py-5" style="background-color:#15246b">
 <?php
 global $showAlret;
 global $showError;
@@ -62,7 +62,7 @@ global $showError;
   <div class="container"  style="background-color:#ffffff">
     <div class="row">
       <div class="column" style="width: 50% ;">
-        <img src="components/SignUp.png"style="width: 100%;margin: 15%;"  ></img>
+        <img src="img/SignUp.jpeg"style="width: 100%;margin: 15%;"  ></img>
       </div>
       <div class="column" style="width: 50%; ">
         <form action="signup.php" method="post" style="margin: 15%;">
@@ -91,7 +91,7 @@ global $showError;
             <label for="cpass" class="form-label">Confirm Password</label>
             <input type="password" class="form-control" id="cpass" name="cpass"style="border-radius:12px;">
           </div>
-          <br><button type="submit" class="btn " style="background-color:#7ddbb6; color:Black;" name="signup">Sign In</button></br>
+          <br><button type="submit" class="btn " style="background-color:darkcyan; color:azure;" name="signup">Sign In</button></br>
         </form>
       </div>
     </div>
