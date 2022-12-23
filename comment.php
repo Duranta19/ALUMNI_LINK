@@ -50,14 +50,14 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Job Preparation</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Blogs</a></li>
+                    <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
                     <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="comjob.php">
                     <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
                     Company
                 </a>
@@ -75,7 +75,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="signout">
+                <a href="logout.php" class="signout">
                     <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
                     Sign Out
                 </a>

@@ -67,14 +67,14 @@ if (isset($_POST['submit'])) {
     <div class="sidebar">
         <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
             Alumni_Linked</header>
-        <ul>
-            <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
-            <li><a href="#"><i class="fas fa-link"></i>Set Question</a></li>
-            <li><a href="#"><i class="fas fa-stream"></i>Post Event</a></li>
+            <ul>
+            <li><a href="admin.php"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+            <li><a href="quizList.php"><i class="fas fa-link"></i>Quiz</a></li>
+            <!-- <li><a href="#"><i class="fas fa-stream"></i>Post Event</a></li>
             <li><a href="#"><i class="fas fa-calendar-week"></i>Post Job</a></li>
             <li><a href="#"><i class="far fa-question-circle"></i>Jobs</a></li>
             <li><a href="#"><i class="fas fa-sliders-h"></i>Post Blog</a></li>
-            <li><a href="#"><i class="far fa-envelope"></i>Blogs</a></li>
+            <li><a href="#"><i class="far fa-envelope"></i>Blogs</a></li> -->
         </ul>
     </div>
     <br>

@@ -85,14 +85,14 @@ $num = mysqli_num_rows($result4);
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Job Preparation</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Blogs</a></li>
+          <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
           <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="comjob.php">
           <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
           Company
         </a>
@@ -212,10 +212,12 @@ $num = mysqli_num_rows($result4);
     $(document).ready(function() {
       $("#notifications").on("click", function() {
         // console.log("Success");
-        var val = "<?php echo $p_id;?>";
+        var val = "<?php echo $p_id; ?>";
         $.ajax({
           url: "components/readNotifications.php",
-          data: { val : val },
+          data: {
+            val: val
+          },
           success: function(result4) {
             console.log(result4);
           }

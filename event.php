@@ -1,6 +1,7 @@
 <?php
 // include('components/dbConnect.php');
-
+session_start();
+$acc_id = $_SESSION['userID'];
 if (isset($_POST['submit'])) {
 
   include('components/dbConnect.php');
@@ -16,7 +17,7 @@ if (isset($_POST['submit'])) {
   $pic_loc = $_FILES['eventImg']['tmp_name'];
   $upload_loc = 'img/' . $pic_name;
 
-  $sql = "INSERT INTO `event_info` (`event_title`, `date`, `time`, `location`, `event_details`, `event_short_details`, `registration_link`, `event_img`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name')";
+  $sql = "INSERT INTO `event_info` (`event_title`, `date`, `time`, `location`, `event_details`, `event_short_details`, `registration_link`, `event_img`, `acc_id`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name', '$acc_id')";
   $result = mysqli_query($conn, $sql);
   // $resultRows = mysqli_num_rows($result);
 
@@ -111,7 +112,7 @@ if (isset($_POST['submit'])) {
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="jobsListAlumni.php">
           <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
           Jobs
         </a>
@@ -119,12 +120,12 @@ if (isset($_POST['submit'])) {
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Blogs</a></li>
-          <li><a class="dropdown-item" href="#">Quiz</a></li>
+          <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+          <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="comjob.php">
           <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
           Company
         </a>
@@ -136,13 +137,13 @@ if (isset($_POST['submit'])) {
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="communityPost.php">
           <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
           Forum
         </a>
       </li>
       <li>
-        <a href="#" class="signout">
+        <a href="logout.php" class="signout">
           <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
           Sign Out
         </a>
