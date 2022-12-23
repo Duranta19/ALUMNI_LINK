@@ -51,78 +51,63 @@ $data = mysqli_fetch_assoc($res);
                 src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0"
                 alt="" style="height:45px; width:45px;" />
             Alumni_Linked</header>
-        <ul>
-            <li>
-                <a href="userProfile.php">
-                    <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-                    Profile
-                </a>
-            </li>
-            <li>
-                <a href="alumniList.php">
-                    <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-                    Alumni
-                </a>
-            </li>
-            <li>
-                <a href="jobsListAlumni.php">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                    Jobs
-                </a>
-            </li>
-            <li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false">Job
-                    Preparation</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Blogs</a></li>
-                    <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-                </ul>
-            </li>
-
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-                    Company
-                </a>
-            </li>
-            <li>
-                <a href="event.php">
-                    <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-                    Events
-                </a>
-            </li>
-            <li>
-                <a href="communityPost.php">
-                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                    Forum
-                </a>
-            </li>
-            <li>
-                <a href="logout.php" class="signout">
-                    <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-                    Sign Out
-                </a>
-                <br>
-            </li>
-            <li>
-                <br>
-            </li>
-        </ul>
+            <ul>
+                <li>
+                    <a href="userProfile.php">
+                        <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="alumniList.php">
+                        <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+                        Alumni
+                    </a>
+                </li>
+                <li>
+                    <a href="jobsListAlumni.php">
+                        <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
+                        Jobs
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+                        <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="comjob.php">
+                        <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+                        Company
+                    </a>
+                </li>
+                <li>
+                    <a href="event.php">
+                        <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="communityPost.php">
+                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                        Forum
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.php" class="signout">
+                        <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
     </div>
     <br>
     <br>
     <section>
-<<<<<<< HEAD
-        <div class="container">
-        <img src="https://as2.ftcdn.net/v2/jpg/04/96/27/97/1000_F_496279754_N7gxd0CWlsLn952lCWHnss3TrA1s90b2.jpg"
-            class="img" alt="..." style="width: 100%; height: auto; margin-top: -50px;">
-=======
         <img src="https://as2.ftcdn.net/v2/jpg/04/96/27/97/1000_F_496279754_N7gxd0CWlsLn952lCWHnss3TrA1s90b2.jpg"
             class="img" alt="..." style="width: 100%; height: 50%; margin-top: -50px;">
->>>>>>> main
         <br>
         <br>
         <div class="container p-3"
@@ -157,21 +142,12 @@ $data = mysqli_fetch_assoc($res);
             <a href="<?php echo $data['apply_link']; ?>" target="_blank" class="btn btn-warning" style="border-radius: 20px; padding: 5px 15px;">Apply</a>
         </div>
         <br>
-<<<<<<< HEAD
-        </div>
         <footer>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffd700" fill-opacity="1" d="M0,160L48,160C96,160,192,160,288,165.3C384,171,480,181,576,197.3C672,213,768,235,864,256C960,277,1056,299,1152,288C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
     </footer>
     </section>
-    
-=======
-
-    </section>
     <br>
-    <footer>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffd700" fill-opacity="1" d="M0,160L48,160C96,160,192,160,288,165.3C384,171,480,181,576,197.3C672,213,768,235,864,256C960,277,1056,299,1152,288C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-    </footer>
->>>>>>> main
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>

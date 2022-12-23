@@ -61,66 +61,6 @@ $num = mysqli_num_rows($result4);
     <i class="fas fa-times" id="cancel"></i>
   </label>
   <div class="sidebar">
-<<<<<<< HEAD
-      <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
-        Alumni_Linked</header>
-      <ul>
-        <li>
-          <a href="userProfile.php">
-            <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-            Profile
-          </a>
-        </li>
-        <li>
-          <a href="alumniList.php">
-            <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-            Alumni
-          </a>
-        </li>
-        <li>
-          <a href="jobsListAlumni.php">
-            <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-            Jobs
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="comjob.php">
-            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-            Company
-          </a>
-        </li>
-        <li>
-          <a href="event.php">
-            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-            Events
-          </a>
-        </li>
-        <li>
-          <a href="communityPost.php">
-            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-            Forum
-          </a>
-        </li>
-        <li>
-          <a href="logout.php" class="signout">
-            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-            Sign Out
-          </a>
-          <br>
-        </li>
-        <li>
-          <br>
-        </li>
-      </ul>
-    </div>
-=======
     <header>
       <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
       Alumni_Linked
@@ -145,14 +85,14 @@ $num = mysqli_num_rows($result4);
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Job Preparation</a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Blogs</a></li>
+          <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
           <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="comjob.php">
           <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
           Company
         </a>
@@ -177,7 +117,6 @@ $num = mysqli_num_rows($result4);
       </li>
     </ul>
   </div>
->>>>>>> main
 
   <ul class="nav justify-content-end">
     <li class="nav-item dropdown mb-3">
@@ -273,10 +212,12 @@ $num = mysqli_num_rows($result4);
     $(document).ready(function() {
       $("#notifications").on("click", function() {
         // console.log("Success");
-        var val = "<?php echo $p_id;?>";
+        var val = "<?php echo $p_id; ?>";
         $.ajax({
           url: "components/readNotifications.php",
-          data: { val : val },
+          data: {
+            val: val
+          },
           success: function(result4) {
             console.log(result4);
           }

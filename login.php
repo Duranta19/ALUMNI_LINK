@@ -25,6 +25,7 @@ if(isset($_POST['submit'])){
         $_SESSION['userID'] = $row['acc_id'];
         $_SESSION['loggedin']= true;
         $category = $row['category'];
+        $_SESSION['cat'] = $category;
       }
       else{
         $login_error = "Invalid Username or Password";
@@ -37,8 +38,15 @@ if(isset($_POST['submit'])){
   }
   if($category == 'Alumni' or $category == 'Student'){
     header("Location: userProfile.php");
-  }else if($category == 'Organizati'){
+  }
+  else if($category == 'Admin'){
+    header("Location: admin.php");
+  }
+  else if($category == 'Organizati'){
     header("Location: company.php");
+  }
+  else{
+    header("Location: login.php");
   }
 }
 ?>

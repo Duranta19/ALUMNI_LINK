@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$catagory = $_SESSION['cat'];
 ?>
 <!DOCTYPE html>
 
@@ -15,16 +16,15 @@
 </head>
 
 <body>
-
-  <input type="checkbox" id="check">
-  <label for="check">
-    <i class="fas fa-bars" id="btn"></i>
-    <i class="fas fa-times" id="cancel"></i>
-  </label>
-  <div class="sidebar">
-<<<<<<< HEAD
-      <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
-        Alumni_Linked</header>
+  <?php
+  if ($catagory == 'Student' or $catagory == 'Alumni') { ?>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>My App</header>
       <ul>
         <li>
           <a href="userProfile.php">
@@ -74,75 +74,10 @@
             <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
             Sign Out
           </a>
-          <br>
-        </li>
-        <li>
-          <br>
         </li>
       </ul>
     </div>
-=======
-    <header>My App</header>
-    <ul>
-      <li>
-        <a href="userProfile.php">
-          <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-          Profile
-        </a>
-      </li>
-      <li>
-        <a href="alumniList.php">
-          <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-          Alumni
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-          Jobs
-        </a>
-      </li>
-      <li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Job Preparation</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Blogs</a></li>
-          <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-        </ul>
-      </li>
-
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-          Company
-        </a>
-      </li>
-      <li>
-        <a href="event.php">
-          <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-          Events
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-          Forum
-        </a>
-      </li>
-      <li>
-        <a href="logout.php" class="signout">
-          <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-          Sign Out
-        </a>
-        <br>
-      </li>
-      <li>
-        <br>
-      </li>
-    </ul>
-  </div>
->>>>>>> main
+  <?php } ?>
   <br>
   <br>
   <section>

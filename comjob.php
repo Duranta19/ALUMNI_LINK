@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,25 +80,20 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="jobsListAlumni.php">
                     <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
                     Jobs
                 </a>
             </li>
-            <li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-                    Job Preparation
-                </a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Quizz</a></li>
                     <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+                    <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
             </li>
-            </li>
             <li>
-                <a href="#">
+                <a href="comjob.php">
                     <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
                     Company
                 </a>
@@ -112,7 +105,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="communityPost.php">
                     <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
                     Forum
                 </a>
