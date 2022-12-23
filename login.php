@@ -35,8 +35,10 @@ if(isset($_POST['submit'])){
   else {
     $login_error = "Invalid Credentials";
   }
-  if($category == 'Alumni' or $category == 'Student' ){
+  if($category == 'Alumni' or $category == 'Student'){
     header("Location: userProfile.php");
+  }else if($category == 'Organizati'){
+    header("Location: company.php");
   }
 }
 ?>
