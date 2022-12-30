@@ -210,10 +210,13 @@
 
     <ul class="nav justify-content-center">
         <li class="nav-item" style=" margin:10px;">
-            <form action=" " method="GET" class="d-flex" role="search">
-                <input class="form-control me-2" name="search" type="search" value="" placeholder="Search" aria-label="Search" style="border-radius: 30px">
-                <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
-            </form>
+        <form action="companyList.php" method="GET" class="d-flex" role="search">
+                    <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
+                                                                                            echo $_GET['search'];
+                                                                                        }
+                                                                                        $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                    <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
+                </form>
         </li>
     </ul>
 
@@ -221,16 +224,26 @@
 
         <?php
         include('components/dbconnect.php');
+        if (isset($_GET['search']) && $chk != false) {
+            $search = $_GET['search'];
         $sql2 = "SELECT * FROM `companyinfo`
     INNER JOIN `job_info`
-    ON job_info.company_id = companyinfo.com_id";
+    ON job_info.company_id = companyinfo.com_id WHERE companyLocation LIKE '%$search%' or vacancy LIKE '%$search%' or companyDetails LIKE '%$search%' or companyName LIKE '%$search%'";
         $result2 = mysqli_query($conn, $sql2);
         while ($row = mysqli_fetch_assoc($result2)) { ?>
-
             <div class="card w-75 mx-auto">
                 <div class="card-body">
                     <div class="image">
-                        <img src="eventImg/<?php echo $row['photo_loc']; ?>" alt="">
+                        <div class="row">
+                            <div class="col-1">
+                            <img src="eventImg/<?php echo $row['photo_loc']; ?>" alt="" >
+
+                            </div>
+                            <div class="col">
+                            <a href="companyProfile.php?com_id=<?php echo $row['com_id'] ?>" style="text-decoration:none; color: #063146;" ><h4> <?php echo $row['companyName'] ?> </h4></a>
+
+                            </div>
+                        </div>
 
                         <div class="row align-items-center">
                             <div class="col">
@@ -256,7 +269,54 @@
                 </div>
             </div>
 
-        <?php } ?>
+        <?php } }
+        else{
+            $sql2 = "SELECT * FROM `companyinfo`
+            INNER JOIN `job_info`
+            ON job_info.company_id = companyinfo.com_id";
+                $result2 = mysqli_query($conn, $sql2);
+                while ($row = mysqli_fetch_assoc($result2)) { ?>
+                    <div class="card w-75 mx-auto">
+                        <div class="card-body">
+                            <div class="image">
+                                <div class="row">
+                                    <div class="col-1">
+                                    <img src="eventImg/<?php echo $row['photo_loc']; ?>" alt="" >
+        
+                                    </div>
+                                    <div class="col">
+                                    <a href="companyProfile.php?com_id=<?php echo $row['com_id'] ?>" style="text-decoration:none; color: #063146;" ><h4> <?php echo $row['companyName'] ?> </h4></a>
+        
+                                    </div>
+                                </div>
+        
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <b>Location</b>
+                                        <p class="card-text1"><?php echo $row['companyLocation'] ?></p>
+                                    </div>
+                                    <div class="col">
+                                        <b>Vacancy</b>
+                                        <p class="card-text"><?php echo $row['vacancy'] ?></p>
+                                    </div>
+                                    <div class="col">
+                                        <b>Company Founded</b>
+                                        <p class="card-text"><?php echo $row['founded'] ?></p>
+                                    </div>
+                                    <div class="col">
+                                        <b>Industry</b>
+                                        <p class="card-text"><?php echo $row['websiteLink'] ?></p>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Description</h5>
+                                <p class="card-text"><?php echo $row['companyDetails'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+        
+                <?php }
+        }
+        ?>
 
     </section>
 

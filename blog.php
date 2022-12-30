@@ -24,7 +24,9 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-
+<?php
+$chk = false;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -157,10 +159,10 @@ if (isset($_POST['submit'])) {
     <section>
         <ul class="nav justify-content-end">
             <li class="nav-item" style=" margin:10px;">
-                <form action="alumniList.php" method="GET" class="d-flex" role="search">
+                <form action="blog.php" method="GET" class="d-flex" role="search">
                     <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
                                                                                             echo $_GET['search'];
-                                                                                        } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                                                                                        }  $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
                     <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
                 </form>
             </li>
@@ -231,7 +233,10 @@ if (isset($_POST['submit'])) {
             <div class="row">
                 <?php
                 include('components/dbconnect.php');
-                $sql2 = "SELECT * FROM `blog_info` WHERE 1;";
+                
+            if (isset($_GET['search']) && $chk != false) {
+                $search = $_GET['search'];
+                $sql2 = "SELECT * FROM `blog_info` WHERE blog_title LIKE '%$search%' OR blogs_short_des LIKE '%$search%';";
                 $result2 = mysqli_query($conn, $sql2);
                 while ($row = mysqli_fetch_assoc($result2)) { ?>
                     <div class="col-md-4 py-2">
@@ -252,7 +257,32 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } }
+                else{
+                    $sql2 = "SELECT * FROM `blog_info` WHERE 1;";
+                $result2 = mysqli_query($conn, $sql2);
+                while ($row = mysqli_fetch_assoc($result2)) { ?>
+                    <div class="col-md-4 py-2">
+                        <div class="card" style="width: 100%; border-radius: 20px; height: 550px;">
+                            <center><img src="img/<?php echo $row['blog_img']; ?>" alt="" style="height: 150px; width:200px" class="py-2"></center>
+                            <div class="card-body" style="height: 350px;">
+                                <h4><?php echo $row['blog_title'] ?></h4>
+                                <label for="text"> Post Date & Time: <br> <?php echo $row['blog_datetime']; ?> </label>
+                                <p class="card-text">
+                                <h5>Description</h5>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted"><?php echo $row['blogs_short_des']  ?></small>
+                                </p>
+                                <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                                    <a href="blogDetails.php?b_id=<?php echo $row['blog_id'] ?>" target="_blank" class="btn btn-outline-success me-md-2" href="">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+                }
+                ?>
             </div>
         </div>
 

@@ -12,9 +12,10 @@ $data = mysqli_fetch_assoc($result);
 $com_id = $data['com_id'];
 $numOfRows = mysqli_num_rows($result);
 if ($numOfRows == 0) {
-  header("Location: companyProfile.php?acc_id=" . $acc_id);
+  header("Location: companyProfileEdit.php?acc_id=" . $acc_id);
 }
-?>
+?>   
+
 <?php
 include('components/dbConnect.php');
 
@@ -122,27 +123,18 @@ if (isset($_POST['postjobs'])) {
 </head>
 
 <body class="mainBody">
-  <!-- sidenav -->
-  <br>
-  <ul class="nav justify-content-end">
-
-    <li class="nav-item">
-      <a class="btn btn-outline-danger m-3" href="logout.php">Logout</a>
-    </li>
 
 
-  </ul>
-
-  <!-- company -->
   <section>
 
 
     <div class="container">
       <div class="profile-card">
-        <img src="img/<?php echo $data['photo_loc']; ?>" alt="" class="cover-pic">
-        <!-- <img src="https://logodix.com/logo/2119897.jpg" alt="" class="profile-pic"> -->
+        <img src="img/<?php echo $data['photo_loc']; ?>" style="height: 300px; width:auto;" alt="" class="cover-pic">
         <br>
+        <div class="container py-4" style="background-color:floralwhite;">
         <p><?php echo $data['companyDetails']; ?></p>
+        </div>
       </div>
     </div>
 
@@ -252,7 +244,7 @@ if (isset($_POST['postjobs'])) {
                 </label>
               </div>
               <div class="container">
-                <a href="comjob.php?com_id=<?php echo $com_id ?>" class="btn btn-info" style="border-radius: 30px;">View existing job</a>
+                <a href="comExistingJobs.php?com_id=<?php echo $com_id ?>" class="btn" style="color:#ffffff; border-radius: 30px;background: #063146;">View existing job</a>
               </div>
             </div>
           </div>
@@ -269,7 +261,7 @@ if (isset($_POST['postjobs'])) {
                 </label>
               </div>
               <div class="container">
-                <a href="job_applicant.php?com_id=<?php echo $com_id ?>" type="button" class="btn btn-danger" style="border-radius: 30px;">View Applicants</a>
+                <a href="job_applicant.php?com_id=<?php echo $com_id ?>" type="button" class="btn" style="color:#ffffff; background: #063146; border-radius:30px;">View Applicants</a>
               </div>
             </div>
           </div>

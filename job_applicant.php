@@ -8,7 +8,6 @@ if (isset($_POST['deleteApplicant'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -137,7 +136,7 @@ if (isset($_POST['deleteApplicant'])) {
                                 <a class="btn btn-outline-success" href="img/<?php echo $row['applicantCV']; ?>" target="_blank"> Download CV </a>
                                 <form action="job_applicant.php?com_id=<?php echo $com_id ?>" method="post">
                                     <input type="hidden" name="aIdToDelete" value="<?php echo $row['applicant_id']; ?>">
-                                    <button type="submit" name="deleteApplicant" class="btn btn-dark btn-sm m-1">Delete
+                                    <button type="submit" name="deleteApplicant" class="btn btn-dark btn-sm m-1">Delete</button>
                                 </form>
                             </div>
                         </div>
