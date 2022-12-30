@@ -1,7 +1,12 @@
 <?php
+session_start();
+$catagory = $_SESSION['cat'];
+if ($catagory != 'Admin') {
+    header("Location: login.php");
+}
 include("components/dbconnect.php");
 $error = false;
-$result ="";
+$result = "";
 $q_num = 1;
 if (isset($_POST['submit'])) {
     $qTitle = $_POST['qusTitle'];
@@ -9,13 +14,12 @@ if (isset($_POST['submit'])) {
     $qDes = $_POST['qusDesc'];
     $totalQus = $_POST['totalQus'];
 
-    $sql2 ="SELECT * FROM `qus_info` WHERE qus_code = '$qCode';";
-    $result2 = mysqli_query($conn,$sql2);
+    $sql2 = "SELECT * FROM `qus_info` WHERE qus_code = '$qCode';";
+    $result2 = mysqli_query($conn, $sql2);
     $checkCode = mysqli_num_rows($result2);
-    if($checkCode > 0){
+    if ($checkCode > 0) {
         $error = "This Question Code Already Exist";
-    }
-    else{
+    } else {
         if ($qCode != "" && $qTitle != "") {
             $sql = "INSERT INTO `qus_info` (`qus_code`,`qus_title`, `qus_des`, `total_qus`) VALUES ('$qCode', '$qTitle', '$qDes', '$totalQus');";
             $result = mysqli_query($conn, $sql);
@@ -24,7 +28,7 @@ if (isset($_POST['submit'])) {
         }
     }
     if ($result) {
-        header("Location: setQuiz.php?q_code=" . $qCode."& q_num= ". $q_num);
+        header("Location: setQuiz.php?q_code=" . $qCode . "& q_num= " . $q_num);
     }
 }
 ?>
@@ -67,7 +71,7 @@ if (isset($_POST['submit'])) {
     <div class="sidebar">
         <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
             Alumni_Linked</header>
-            <ul>
+        <ul>
             <li><a href="admin.php"><i class="fas fa-qrcode"></i>Dashboard</a></li>
             <li><a href="quizList.php"><i class="fas fa-link"></i>Quiz</a></li>
             <!-- <li><a href="#"><i class="fas fa-stream"></i>Post Event</a></li>
@@ -99,6 +103,17 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="col">
                             <input type="number" class="form-control" placeholder="Number of Question" name="totalQus">
+                        </div>
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" name="quizCatagory">
+                                <option value =" " disabled selected>Category</option>
+                                <option value="Java">Java</option>
+                                <option value="C++">C++</option>
+                                <option value="Python">Python</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="Php">Php</option>
+                                <option value="General Knowledge">General Knowledge</option>
+                            </select>
                         </div>
                     </div>
                     <br>

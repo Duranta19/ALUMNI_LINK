@@ -1,15 +1,15 @@
 <?php
 include('components/dbconnect.php');
 $searchCheck = false;
-$result4="";
+$result4 = "";
 session_start();
 $category = $_SESSION['cat'] ?? 'not set';
 // echo $category;
-$c =0;
+$c = 0;
 $sql3 = "SELECT * FROM `jobs_alumni` WHERE 1 ORDER BY jobs_alumni.post_date DESC;";
 $result3 = mysqli_query($conn, $sql3);
-while($row2 = mysqli_fetch_assoc($result3)){
-    $c += 1; 
+while ($row2 = mysqli_fetch_assoc($result3)) {
+    $c += 1;
 }
 if (isset($_POST['submit'])) {
     include('components/dbconnect.php');
@@ -33,11 +33,11 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn);
 }
-if(isset($_GET['search'])){
+if (isset($_GET['search'])) {
     $searchCheck = true;
     $key = $_GET['key'];
     $sql4 = "SELECT * FROM `jobs_alumni` WHERE company LIKE '%$key%' or location LIKE '%$key%' or job_requirements like '%$key%' or job_type like '%$key%' OR job_title like '%$key%';";
-    $result4 = mysqli_query($conn,$sql4);
+    $result4 = mysqli_query($conn, $sql4);
 }
 ?>
 
@@ -74,6 +74,7 @@ if(isset($_GET['search'])){
         .card {
             margin: 5px;
         }
+
         .card:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
         }
@@ -105,24 +106,22 @@ if(isset($_GET['search'])){
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                    Jobs
-                </a>
-            </li>
-            <li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Job
-                    Preparation</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Blogs</a></li>
+                    <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+                    <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+                </ul>
+
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
                     <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
             </li>
-
-            </li>
             <li>
-                <a href="#">
+                <a href="companyList.php">
                     <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
                     Company
                 </a>
@@ -140,14 +139,16 @@ if(isset($_GET['search'])){
                 </a>
             </li>
             <li>
+                <a href="controllPanel.php">
+                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                    Controll Panel
+                </a>
+            </li>
+            <li>
                 <a href="logout.php" class="signout">
                     <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
                     Sign Out
                 </a>
-                <br>
-            </li>
-            <li>
-                <br>
             </li>
         </ul>
     </div>
@@ -158,7 +159,7 @@ if(isset($_GET['search'])){
         <ul class="nav justify-content-end">
             <li class="nav-item" style=" margin:10px;">
                 <form action="jobsListAlumni.php" method="GET" class="d-flex" id="form1">
-                    <input class="form-control me-2" name="key" type="text" placeholder="Search"  style="border-radius: 30px">
+                    <input class="form-control me-2" name="key" type="text" placeholder="Search" style="border-radius: 30px">
                     <button class="btn btn-dark" type="submit" name="search" style="background: #063146; border-radius:20px;">Search</button>
                 </form>
             </li>
@@ -268,40 +269,42 @@ if(isset($_GET['search'])){
         <div class="container">
             <div class="row">
                 <?php
-                if(!$searchCheck){
-                include('components/dbconnect.php');
-                $sql2 = "SELECT * FROM `jobs_alumni` WHERE 1 ORDER BY jobs_alumni.post_date DESC;";
-                $result2 = mysqli_query($conn, $sql2);
+                if (!$searchCheck) {
+                    include('components/dbconnect.php');
+                    $sql2 = "SELECT * FROM `jobs_alumni` WHERE 1 ORDER BY jobs_alumni.post_date DESC;";
+                    $result2 = mysqli_query($conn, $sql2);
 
-                while ($row = mysqli_fetch_assoc($result2)) { ?>
-                    
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row['job_title'] ?></h5>
-                                <p class="card-text">Vacancy : <?php echo $row['vacency'] ?></p>
-                                <p class="card-text">Experience : <?php echo $row['experiance'] ?></p>
-                                <p class="card-text">Deadline : <?php echo $row['deadline'] ?></p>
-                                <a href="jobDetailsAlumni.php ? sl=<?php echo $row['sl'];?>" class="btn btn-primary" style="background: #063146; border-radius:20px;">Details</a>
+                    while ($row = mysqli_fetch_assoc($result2)) { ?>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['job_title'] ?></h5>
+                                    <p class="card-text">Vacancy : <?php echo $row['vacency'] ?></p>
+                                    <p class="card-text">Experience : <?php echo $row['experiance'] ?></p>
+                                    <p class="card-text">Deadline : <?php echo $row['deadline'] ?></p>
+                                    <a href="jobDetailsAlumni.php ? sl=<?php echo $row['sl']; ?>" class="btn btn-primary" style="background: #063146; border-radius:20px;">Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                <?php }} else{
+                    <?php }
+                } else {
                     while ($row = mysqli_fetch_assoc($result4)) { ?>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row['job_title'] ?></h5>
-                                <p class="card-text">Vacancy : <?php echo $row['vacency'] ?></p>
-                                <p class="card-text">Experience : <?php echo $row['experiance'] ?></p>
-                                <p class="card-text">Deadline : <?php echo $row['deadline'] ?></p>
-                                <a href="jobDetailsAlumni.php ? sl=<?php echo $row['sl'];?>" class="btn btn-primary" style="background: #063146; border-radius:20px;">Details</a>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['job_title'] ?></h5>
+                                    <p class="card-text">Vacancy : <?php echo $row['vacency'] ?></p>
+                                    <p class="card-text">Experience : <?php echo $row['experiance'] ?></p>
+                                    <p class="card-text">Deadline : <?php echo $row['deadline'] ?></p>
+                                    <a href="jobDetailsAlumni.php ? sl=<?php echo $row['sl']; ?>" class="btn btn-primary" style="background: #063146; border-radius:20px;">Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php }} ?>
-                
+                <?php }
+                } ?>
+
             </div>
         </div>
         <br>

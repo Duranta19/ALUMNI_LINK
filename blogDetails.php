@@ -78,25 +78,22 @@ $numOfRows = mysqli_num_rows($result);
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                    Jobs
-                </a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+                    <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+                </ul>
+
             </li>
-            <li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-                    Job Preparation
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Quizz</a></li>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+                    <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
             </li>
-            </li>
             <li>
-                <a href="#">
+                <a href="companyList.php">
                     <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
                     Company
                 </a>
@@ -108,9 +105,15 @@ $numOfRows = mysqli_num_rows($result);
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="communityPost.php">
                     <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
                     Forum
+                </a>
+            </li>
+            <li>
+                <a href="controllPanel.php">
+                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                    Controll Panel
                 </a>
             </li>
             <li>

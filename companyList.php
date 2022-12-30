@@ -161,43 +161,46 @@
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                    Jobs
-                </a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+                    <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+                </ul>
+
             </li>
-            <li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>
-                    Job Preparation
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Quizz</a></li>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+                    <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
             </li>
-            </li>
             <li>
-                <a href="#">
+                <a href="companyList.php">
                     <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
                     Company
                 </a>
             </li>
             <li>
-                <a href="event.html">
+                <a href="event.php">
                     <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
                     Events
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="communityPost.php">
                     <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
                     Forum
                 </a>
             </li>
             <li>
-                <a href="#" class="signout">
+                <a href="controllPanel.php">
+                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                    Controll Panel
+                </a>
+            </li>
+            <li>
+                <a href="logout.php" class="signout">
                     <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
                     Sign Out
                 </a>
@@ -216,40 +219,44 @@
 
     <section>
 
+        <?php
+        include('components/dbconnect.php');
+        $sql2 = "SELECT * FROM `companyinfo`
+    INNER JOIN `job_info`
+    ON job_info.company_id = companyinfo.com_id";
+        $result2 = mysqli_query($conn, $sql2);
+        while ($row = mysqli_fetch_assoc($result2)) { ?>
 
             <div class="card w-75 mx-auto">
                 <div class="card-body">
                     <div class="image">
-                        <img src="https://1000logos.net/wp-content/uploads/2020/11/Grameenphone-Logo.jpg" alt="">
+                        <img src="eventImg/<?php echo $row['photo_loc']; ?>" alt="">
 
                         <div class="row align-items-center">
                             <div class="col">
                                 <b>Location</b>
-                                <p class="card-text1">65 office locations</p>
+                                <p class="card-text1"><?php echo $row['companyLocation'] ?></p>
                             </div>
                             <div class="col">
-                                <b>Global Company Size</b>
-                                <p class="card-text">10000+ Employees</p>
+                                <b>Vacancy</b>
+                                <p class="card-text"><?php echo $row['vacancy'] ?></p>
+                            </div>
+                            <div class="col">
+                                <b>Company Founded</b>
+                                <p class="card-text"><?php echo $row['founded'] ?></p>
                             </div>
                             <div class="col">
                                 <b>Industry</b>
-                                <p class="card-text">Internet & Web Services</p>
+                                <p class="card-text"><?php echo $row['websiteLink'] ?></p>
                             </div>
                         </div>
                         <h5 class="card-title">Description</h5>
-                        <p class="card-text">All Amazon teams and businesses, from Prime delivery to AWS, are guided by four
-                            key
-                            tenets: customer obsession rather than competitor focus, passion for invention, commitment to
-                            operational excellence, and long-term thinking. All Amazon teams and businesses, from Prime
-                            delivery to AWS, are guided by four
-                            key
-                            tenets: customer obsession rather than competitor focus, passion for invention, commitment to
-                            operational excellence, and long-term thinking.All Amazon teams and.......</p>
+                        <p class="card-text"><?php echo $row['companyDetails'] ?></p>
                     </div>
                 </div>
             </div>
 
-
+        <?php } ?>
 
     </section>
 

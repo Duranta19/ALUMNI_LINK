@@ -39,10 +39,12 @@ $catagory = $_SESSION['cat'];
           </a>
         </li>
         <li>
-          <a href="jobsListAlumni.php">
-            <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-            Jobs
-          </a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+          </ul>
+
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
@@ -52,7 +54,7 @@ $catagory = $_SESSION['cat'];
           </ul>
         </li>
         <li>
-          <a href="comjob.php">
+          <a href="companyList.php">
             <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
             Company
           </a>
@@ -67,6 +69,12 @@ $catagory = $_SESSION['cat'];
           <a href="communityPost.php">
             <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
             Forum
+          </a>
+        </li>
+        <li>
+          <a href="controllPanel.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Controll Panel
           </a>
         </li>
         <li>

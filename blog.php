@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
     <div class="sidebar">
       <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
         Alumni_Linked</header>
-      <ul>
+        <ul>
         <li>
           <a href="userProfile.php">
             <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
@@ -106,10 +106,12 @@ if (isset($_POST['submit'])) {
           </a>
         </li>
         <li>
-          <a href="jobsListAlumni.php">
-            <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-            Jobs
-          </a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+          </ul>
+
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
@@ -119,7 +121,7 @@ if (isset($_POST['submit'])) {
           </ul>
         </li>
         <li>
-          <a href="comjob.php">
+          <a href="companyList.php">
             <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
             Company
           </a>
@@ -137,14 +139,16 @@ if (isset($_POST['submit'])) {
           </a>
         </li>
         <li>
+          <a href="controllPanel.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Controll Panel
+          </a>
+        </li>
+        <li>
           <a href="logout.php" class="signout">
             <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
             Sign Out
           </a>
-          <br>
-        </li>
-        <li>
-          <br>
         </li>
       </ul>
     </div>

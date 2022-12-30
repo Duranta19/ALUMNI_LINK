@@ -130,10 +130,11 @@ $num = mysqli_num_rows($result4);
         <i class="fa-regular fa-bell" style="font-size: 35px; color: black; margin-right: -15px;"></i> <span class="count" style="color: #000000; font-size:14px; background:red; padding: 0px 5px; margin-right: 68px; border-radius: 50%;"><?php echo $num; ?></span></a>
       <ul class="dropdown-menu">
         <?php
-
-        while ($row3 = mysqli_fetch_assoc($result4)) { ?>
+        $sql5 = "SELECT * FROM `cmnt_notification` WHERE post_by = '$acc_id' ORDER BY cmnt_notification.date DESC LIMIT 10;";
+        $result5 = mysqli_query($conn, $sql5);
+        while ($row3 = mysqli_fetch_assoc($result5)) { ?>
           <li><?php echo $row3['text']; ?><a class="" href="comment.php?post_id=<?php echo $row3['post_id'] ?>">Show</a></li>
-
+          <hr>
         <?php } ?>
       </ul>
     </li>

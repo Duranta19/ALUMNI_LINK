@@ -1,3 +1,11 @@
+<?php
+include('components/dbconnect.php');
+if (isset($_POST['deleteApplicant'])) {
+    $a_id = $_POST['aIdToDelete'];
+    $sql3 = "DELETE FROM `job_applicant` WHERE applicant_id = '$a_id';";
+    $result3 = mysqli_query($conn, $sql3);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,46 +76,15 @@
         </header>
         <ul>
             <li>
-                <a href="userProfile.php">
+                <a href="company.php">
                     <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-                    Profile
+                    Dashboard
                 </a>
             </li>
             <li>
-                <a href="alumniList.php">
-                    <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-                    Alumni
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
+                <a href="comjob.php?com_id=<?php echo $com_id ?>">
+                    <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
                     Jobs
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Blogs</a></li>
-                    <li><a class="dropdown-item" href="#">Quiz</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-                    Company
-                </a>
-            </li>
-            <li>
-                <a href="event.php">
-                    <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-                    Events
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                    Forum
                 </a>
             </li>
             <li>
@@ -121,23 +98,11 @@
 
     <!-- event -->
     <section>
-        <ul class="nav justify-content-end">
-            <li class="nav-item" style=" margin:10px;">
-                <form action="alumniList.php" method="GET" class="d-flex" role="search">
-                    <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
-                                                                                            echo $_GET['search'];
-                                                                                        } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
-                    <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
-                </form>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="btn btn-primary" href="#" role="button" style="margin-left:5px; margin-right:5px; border-radius:50px;">Edit Profile</a>
-            </li> -->
-        </ul>
+
         <?php
 
-$com_id = $_GET['com_id'];
-?>
+        $com_id = $_GET['com_id'];
+        ?>
         <?php
         include('components/dbconnect.php');
         $sql2 = "SELECT * FROM `job_applicant` WHERE job_applicant.com_id = '$com_id' ;";
@@ -146,35 +111,39 @@ $com_id = $_GET['com_id'];
 
             <div class="container">
                 <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
-                <div class="card-body">
+                    <div class="card-body">
 
-                <div class="row">
-                    <div class="col-md-3">
-                    <img src="Img/<?php echo $row['photo']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="Img/<?php echo $row['photo']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+                            </div>
+                            <div class="col-md-3">
+                                <h6>Name:</h6>
+                                <p> <?php echo $row['applicantName']; ?></p>
+                                <h6>Email:</h6>
+                                <p> <?php echo $row['applicantEmail']; ?></p>
+                                <h6>Phone:</h6>
+                                <p> <?php echo $row['applicantPhone']; ?></p>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>Description</h6>
+                                <p> <?php echo $row['applicantDes']; ?></p>
+
+                            </div>
+                            <div class="col-md-3">
+                                <h6>Website</h6>
+                                <p> <?php echo $row['websiteLink']; ?></p>
+                                <h6>CV</h6>
+                                <a class="btn btn-outline-success" href="img/<?php echo $row['applicantCV']; ?>" target="_blank"> Download CV </a>
+                                <form action="job_applicant.php?com_id=<?php echo $com_id ?>" method="post">
+                                    <input type="hidden" name="aIdToDelete" value="<?php echo $row['applicant_id']; ?>">
+                                    <button type="submit" name="deleteApplicant" class="btn btn-dark btn-sm m-1">Delete
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                        <div class="col-md-3">
-                            <h6>Name:</h6>
-                            <p>  <?php echo $row['applicantName']; ?></p>
-                            <h6>Email:</h6>
-                            <p> <?php echo $row['applicantEmail']; ?></p>
-                            <h6>Phone:</h6>
-                            <p> <?php echo $row['applicantPhone']; ?></p>
-                        </div>
-                        <div class="col-md-3">
-                            <h6>Description</h6>
-                        <p> <?php echo $row['applicantDes']; ?></p>
 
-                        </div>
-                        <div class="col-md-3">
-                        <h6>Website</h6>
-                        <p> <?php echo $row['websiteLink']; ?></p>
-                        <h6>CV</h6>
-                        <a class="btn btn-outline-success" href="img/<?php echo $row['applicantCV']; ?>" target="_blank"> Download CV </a>
-                        </div>
-                        </div>
-                </div>
-                       
-                  
+
                 </div>
 
             </div>

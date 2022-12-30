@@ -1,3 +1,9 @@
+<?php
+session_start();
+$catagory = $_SESSION['cat'];
+
+$com_id= $_GET['com_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,88 +62,83 @@
 
 <body class="mainBody">
     <!-- sidenav -->
-    <input type="checkbox" id="check" />
-    <label for="check">
-        <i class="fas fa-bars" id="btn"></i>
-        <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-        <header>
-            <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
-            Alumni_Linked
-        </header>
-        <ul>
-            <li>
-                <a href="userProfile.php">
-                    <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-                    Profile
-                </a>
-            </li>
-            <li>
-                <a href="alumniList.php">
-                    <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-                    Alumni
-                </a>
-            </li>
-            <li>
-                <a href="jobsListAlumni.php">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                    Jobs
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-                    <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="comjob.php">
-                    <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-                    Company
-                </a>
-            </li>
-            <li>
-                <a href="event.php">
-                    <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-                    Events
-                </a>
-            </li>
-            <li>
-                <a href="communityPost.php">
-                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                    Forum
-                </a>
-            </li>
-            <li>
-                <a href="logout.php" class="signout">
-                    <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-                    Sign Out
-                </a>
-            </li>
-        </ul>
-    </div>
-
+    <?php
+    if ($catagory == 'Student' or $catagory == 'Alumni') { ?>
+        <input type="checkbox" id="check" />
+        <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+        </label>
+        <div class="sidebar">
+            <header>
+                <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
+                Alumni_Linked
+            </header>
+            <ul>
+                <li>
+                    <a href="userProfile.php">
+                        <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="alumniList.php">
+                        <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+                        Alumni
+                    </a>
+                </li>
+                <li>
+                    <a href="jobsListAlumni.php">
+                        <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
+                        Jobs
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+                        <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="comjob.php">
+                        <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+                        Company
+                    </a>
+                </li>
+                <li>
+                    <a href="event.php">
+                        <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="communityPost.php">
+                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                        Forum
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.php" class="signout">
+                        <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <?php } ?>
     <!-- event -->
     <section>
-        <ul class="nav justify-content-end">
-            <li class="nav-item" style=" margin:10px;">
-                <form action="alumniList.php" method="GET" class="d-flex" role="search">
-                    <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
-                                                                                            echo $_GET['search'];
-                                                                                        } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
-                    <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
-                </form>
-            </li>
-        </ul>
+<br>
+<br>
+<br>
         <div class="container">
             <div class="row">
                 <?php
                 include('components/dbconnect.php');
                 $sql2 = "SELECT * FROM `companyinfo`
                 INNER JOIN `job_info`
-                ON job_info.company_id = companyinfo.com_id";
+                ON job_info.company_id = companyinfo.com_id and companyinfo.com_id = '$com_id'";
                 $result2 = mysqli_query($conn, $sql2);
                 // $x = mysqli_num_rows($result2);
                 // echo $x;
@@ -155,7 +156,7 @@
                                 <h6>Required Skill</h6>
                                 </p>
                                 <p class="card-text">
-                                    <small class="text-muted"><?php echo $row['skill_req']  ?></small>
+                                    <small class="text-muted"><?php $new_string =  mb_strimwidth($row['skill_req'], 0, 100, "...."); echo$new_string;   ?></small>
                                 </p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
                                     <a href="applyJobs.php?com_id=<?php echo $row['com_id']; ?>" target="_blank" class="btn btn-outline-success me-md-2" href="">View Description</a>

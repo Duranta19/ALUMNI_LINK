@@ -1,5 +1,6 @@
 <?php
 // include('components/dbConnect.php');
+$chk = false;
 session_start();
 $acc_id = $_SESSION['userID'];
 if (isset($_POST['submit'])) {
@@ -112,10 +113,12 @@ if (isset($_POST['submit'])) {
         </a>
       </li>
       <li>
-        <a href="jobsListAlumni.php">
-          <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-          Jobs
-        </a>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+          <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+        </ul>
+
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
@@ -125,7 +128,7 @@ if (isset($_POST['submit'])) {
         </ul>
       </li>
       <li>
-        <a href="comjob.php">
+        <a href="companyList.php">
           <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
           Company
         </a>
@@ -143,6 +146,12 @@ if (isset($_POST['submit'])) {
         </a>
       </li>
       <li>
+        <a href="controllPanel.php">
+          <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+          Controll Panel
+        </a>
+      </li>
+      <li>
         <a href="logout.php" class="signout">
           <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
           Sign Out
@@ -155,10 +164,11 @@ if (isset($_POST['submit'])) {
   <section>
     <ul class="nav justify-content-end">
       <li class="nav-item" style=" margin:10px;">
-        <form action="alumniList.php" method="GET" class="d-flex" role="search">
+        <form action="event.php" method="GET" class="d-flex" role="search">
           <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
                                                                                 echo $_GET['search'];
-                                                                              } ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                                                                              }
+                                                                              $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
           <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
         </form>
       </li>
@@ -246,45 +256,88 @@ if (isset($_POST['submit'])) {
 
     <?php
     include('components/dbconnect.php');
-    $sql2 = "SELECT * FROM `event_info` WHERE 1;";
-    $result2 = mysqli_query($conn, $sql2);
-    while ($row = mysqli_fetch_assoc($result2)) { ?>
+    if (isset($_GET['search']) && $chk != false) {
+      $search = $_GET['search'];
+      $sql3 = "SELECT * FROM `event_info` WHERE event_title like '%$search%' or event_details like '%$search%' or locations like '%$search%';";
+      $result3 = mysqli_query($conn, $sql3);
+      while ($row = mysqli_fetch_assoc($result3)) { ?>
 
-      <div class="container">
-        <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
-          <div class="row g-0">
-            <div class="col-2">
-              <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
-            </div>
-            <div class="col-10">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-10">
-                    <h5 class="card-title"> <?php echo strrev($row['event_title']); ?></h5>
-                    <p class="card-text"></p>
-                    <p class="card-text">
-                      <small class="text-muted"></small>
-                      <?php echo $row['event_short_details'] ?>
-                    </p>
-                  </div>
-                  <div class="col-2">
-                    <br />
-                    <br />
-                    <br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
-                      <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
-                      </button>
+        <div class="container">
+          <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+            <div class="row g-0">
+              <div class="col-2">
+                <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-10">
+                      <h5 class="card-title"> <?php echo $row['event_title']; ?></h5>
+                      <p class="card-text"></p>
+                      <p class="card-text">
+                        <small class="text-muted"></small>
+                        <?php echo $row['event_short_details'] ?>
+                      </p>
+                    </div>
+                    <div class="col-2">
+                      <br />
+                      <br />
+                      <br>
+                      <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                        <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>
+      <?php }
+    } else {
+      $sql2 = "SELECT * FROM `event_info` WHERE 1;";
+      $result2 = mysqli_query($conn, $sql2);
+      while ($row = mysqli_fetch_assoc($result2)) { ?>
 
-      </div>
-    <?php } ?>
+        <div class="container">
+          <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+            <div class="row g-0">
+              <div class="col-2">
+                <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-10">
+                      <h5 class="card-title"> <?php echo $row['event_title']; ?></h5>
+                      <p class="card-text"></p>
+                      <p class="card-text">
+                        <small class="text-muted"></small>
+                        <?php echo $row['event_short_details'] ?>
+                      </p>
+                    </div>
+                    <div class="col-2">
+                      <br />
+                      <br />
+                      <br>
+                      <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                        <a href="eventdes.php?e_id=<?php echo $row['event_id'] ?>" class="btn btn-outline-dark">Details</a>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+    <?php }
+    } ?>
 
 
 
