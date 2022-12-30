@@ -1,8 +1,22 @@
 <?php
-$att = $_GET['atmp'];
+include('components/dbconnect.php');
+session_start();
+$acc_id = $_SESSION['userID'];
+$qCode = $_GET['qCode'];
+$att = (int)$_GET['atmp'];
 $score = $_GET['score'];
-$totalQ = $_GET['totalQuestion'];
-$wrong = $totalQ - $score;
+$score = (int)$score;
+$totalQ = (int)$_GET['totalQuestion'];
+$wrong = (int) $att - $score;
+$acc = (int) (100 - ($wrong * 100) / $totalQ);
+
+$sql1 = "SELECT  `Catagory` FROM `qus_info` WHERE qus_code = '$qCode';";
+$result1 = mysqli_query($conn, $sql1);
+$dataCat = mysqli_fetch_assoc($result1);
+$category = $dataCat['Catagory'];
+// echo $category;
+$sql2 = "INSERT INTO `quiz_result`(`acc_id`, `score`, `category`) VALUES ('$acc_id','$acc','$category')";
+$result2 = mysqli_query($conn, $sql2);
 ?>
 <!DOCTYPE html>
 
@@ -40,23 +54,22 @@ $wrong = $totalQ - $score;
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                    Jobs
-                </a>
-            </li>
-            <li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Job Preparation</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Blogs</a></li>
+                    <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+                    <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+                </ul>
+
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
                     <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
             </li>
-
-            </li>
             <li>
-                <a href="#">
+                <a href="companyList.php">
                     <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
                     Company
                 </a>
@@ -68,9 +81,15 @@ $wrong = $totalQ - $score;
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="communityPost.php">
                     <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
                     Forum
+                </a>
+            </li>
+            <li>
+                <a href="controllPanel.php">
+                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                    Controll Panel
                 </a>
             </li>
             <li>
@@ -78,10 +97,6 @@ $wrong = $totalQ - $score;
                     <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
                     Sign Out
                 </a>
-                <br>
-            </li>
-            <li>
-                <br>
             </li>
         </ul>
     </div>
@@ -97,9 +112,9 @@ $wrong = $totalQ - $score;
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Score</h5>
-                    <p class="card-text">You Have Attemp <?php  echo $att;?> Questions</p>
-                    <p class="card-text">Correct <?php  echo $score;?>  </p>
-                    <p class="card-text">Wrong <?php  echo $wrong;?></p>
+                    <p class="card-text">You Have Attemp <?php echo $att; ?> Questions</p>
+                    <p class="card-text">Correct <?php echo $score; ?> </p>
+                    <p class="card-text">Wrong <?php echo $wrong; ?></p>
                     <a href="quizList.php" class="btn btn-primary">Close</a>
                 </div>
                 <div class="card-footer text-muted">

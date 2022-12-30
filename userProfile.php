@@ -54,6 +54,42 @@ $lng_arr = explode(",", $data['language']);
       border-radius: .25rem;
     }
   </style>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['bar']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Category', 'Scores'],
+        <?php
+        include('components/dbconnect.php');
+        $sql4 = "SELECT category, avg(score) as score FROM quiz_result where acc_id = '$acc_id' GROUP BY category;";
+        $result4 = mysqli_query($conn, $sql4);
+        while ($row2 = mysqli_fetch_assoc($result4)) {
+          $a = $row2['category'];
+          $b = $row2['score'];
+        ?>['<?php echo $a; ?>', <?php echo $b ?>],
+        <?php } ?>
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Quiz Performance',
+          subtitle: 'Category, Score',
+        },
+        bars: 'horizontal', // Required for Material Bar Charts.
+        colors: ['#063146']
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  </script>
 </head>
 
 <body class="mainBody">
@@ -81,10 +117,12 @@ $lng_arr = explode(",", $data['language']);
           </a>
         </li>
         <li>
-          <a href="jobsListAlumni.php">
-            <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-            Jobs
-          </a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+          </ul>
+
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
@@ -94,7 +132,7 @@ $lng_arr = explode(",", $data['language']);
           </ul>
         </li>
         <li>
-          <a href="comjob.php">
+          <a href="companyList.php">
             <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
             Company
           </a>
@@ -145,7 +183,7 @@ $lng_arr = explode(",", $data['language']);
         <div class="col-sm-3" style="margin: 10px;">
           <div class="card">
             <div class="card-body">
-              <!-- <a href="editProfile.php?acc_id=<?php echo $acc_id; ?>" class="btn btn-light"><i class="fa-solid fa-user-pen"></i></a> -->
+              <a href="edit.php?acc_id=<?php echo $acc_id; ?>" class="btn btn-light"><i class="fa-solid fa-user-pen"></i></a>
               <div class="text-center">
                 <img src="img/<?php echo $data['photo_loc']; ?>" class="" alt="..." style="height:150px; width:150px; border-radius: 50%;">
               </div>
@@ -355,7 +393,9 @@ $lng_arr = explode(",", $data['language']);
               <hr>
             </div>
           </div>
+          <div id="barchart_material" style="width: 600px; height: 300px; margin:10px"></div>
         </div>
+
       </div>
     </section>
 

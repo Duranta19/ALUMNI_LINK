@@ -9,12 +9,12 @@ include('components/dbconnect.php');
 $sql = "SELECT * FROM `companyinfo` WHERE companyinfo.acc_id = '$acc_id';";
 $result = mysqli_query($conn, $sql);
 $data = mysqli_fetch_assoc($result);
-$com_id=$data['com_id'];
+$com_id = $data['com_id'];
 $numOfRows = mysqli_num_rows($result);
 if ($numOfRows == 0) {
   header("Location: companyProfile.php?acc_id=" . $acc_id);
 }
-?>   
+?>
 <?php
 include('components/dbConnect.php');
 
@@ -123,70 +123,15 @@ if (isset($_POST['postjobs'])) {
 
 <body class="mainBody">
   <!-- sidenav -->
-  <input type="checkbox" id="check" />
-  <label for="check">
-    <i class="fas fa-bars" id="btn"></i>
-    <i class="fas fa-times" id="cancel"></i>
-  </label>
-  <div class="sidebar">
-      <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
-        Alumni_Linked</header>
-      <ul>
-        <li>
-          <a href="userProfile.php">
-            <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-            Profile
-          </a>
-        </li>
-        <li>
-          <a href="alumniList.php">
-            <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-            Alumni
-          </a>
-        </li>
-        <li>
-          <a href="jobsListAlumni.php">
-            <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-            Jobs
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="comjob.php">
-            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-            Company
-          </a>
-        </li>
-        <li>
-          <a href="event.php">
-            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-            Events
-          </a>
-        </li>
-        <li>
-          <a href="communityPost.php">
-            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-            Forum
-          </a>
-        </li>
-        <li>
-          <a href="logout.php" class="signout">
-            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-            Sign Out
-          </a>
-          <br>
-        </li>
-        <li>
-          <br>
-        </li>
-      </ul>
-    </div>
+  <br>
+  <ul class="nav justify-content-end">
+
+    <li class="nav-item">
+      <a class="btn btn-outline-danger m-3" href="logout.php">Logout</a>
+    </li>
+
+
+  </ul>
 
   <!-- company -->
   <section>
@@ -307,7 +252,7 @@ if (isset($_POST['postjobs'])) {
                 </label>
               </div>
               <div class="container">
-                <a href="comjob.php" class="btn btn-info" style="border-radius: 30px;">View existing job</a>
+                <a href="comjob.php?com_id=<?php echo $com_id ?>" class="btn btn-info" style="border-radius: 30px;">View existing job</a>
               </div>
             </div>
           </div>

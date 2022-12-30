@@ -27,7 +27,13 @@
 
 <body>
 
+<ul class="nav justify-content-end">
 
+<li class="nav-item">
+  <a class="btn btn-outline-danger m-3" href="logout.php">Logout</a>
+</li>
+
+</ul>
     <section>
         <!-- cover -->
         <div class="contayiner"
@@ -155,7 +161,7 @@
             <br>
             <br>
             <br>
-            <a href="logout.php" class="btn btn-outline-dark">Logout</a>
+
     </section>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
