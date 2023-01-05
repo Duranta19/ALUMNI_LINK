@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+  header("Location: login.php");
+}
 $user_name = $_SESSION['username'];
 $acc_id = $_SESSION['userID'];
 $com_id = $_GET['com_id'];
@@ -19,8 +22,9 @@ $data2 = mysqli_fetch_assoc($result2);
 $sql3 = "SELECT * FROM `user_info` WHERE user_info.acc_id = '$acc_id';";
 $result3 = mysqli_query($conn, $sql3);
 $data3 = mysqli_fetch_assoc($result3);
-// $photo = $data3['photo_loc'];
+$photo = $data3['photo_loc'];
 ?>
+
 <?php
 if (isset($_POST['submit'])) {
 
@@ -151,10 +155,10 @@ if (isset($_POST['submit'])) {
                 <div class="row">
 
                     <div class="col-md-6">
+                    <a href="companyProfile.php?com_id=<?php echo $com_id ?>"  class="btn btn-outline-dark"><h4> <?php echo $data2['companyName'] ?> </h5></a>
                         <center><img src="img/<?php echo $data2['photo_loc']; ?>" alt="" style="height: 100%; width:100%" class="py-2"></center>
                         <h5><?php echo $data['job_title'] ?></h5>
-                        <h5><?php echo $data2['companyName'] ?> </h5>
-                        <p> <?php echo $data2['websiteLink'] ?></p>
+                        <a target="_blank" href="https://<?php echo $data2['websiteLink'] ?>" style="color:#063146;">View Website</a><br> <br>
                         <label for="text"> Location: <?php echo $data['job_loc']; ?> </label><br>
                         <label for="text"> Vacancy: <?php echo $data['vacancy']; ?> </label><br>
                         <label for="text"> Experience: <?php echo $data['experience']; ?> Years </label><br>
@@ -175,11 +179,11 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
 
-            <form action="applyJobs.php?com_id=<?php echo $com_id ?>" method="post" class="d-flex py-2" enctype="multipart/form-data">
+            <form action="applyJobs.php?com_id=<?php echo $com_id ?>" method="post" class=" py-2 justify-content-center" enctype="multipart/form-data">
                 <li>
                     <!-- Button trigger modal -->
                     <div class="container">
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" style="width: 50%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Apply
                         </button>
                     </div>

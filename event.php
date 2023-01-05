@@ -1,7 +1,12 @@
 <?php
+session_start();
+$category = $_SESSION['cat'];
+if (!$_SESSION['loggedin']) {
+  header("Location: login.php");
+}
 // include('components/dbConnect.php');
 $chk = false;
-session_start();
+// session_start();
 $acc_id = $_SESSION['userID'];
 if (isset($_POST['submit'])) {
 
@@ -16,9 +21,9 @@ if (isset($_POST['submit'])) {
 
   $pic_name = $_FILES['eventImg']['name'];
   $pic_loc = $_FILES['eventImg']['tmp_name'];
-  $upload_loc = 'img/' . $pic_name;
+  $upload_loc = 'eventImg/' . $pic_name;
 
-  $sql = "INSERT INTO `event_info` (`event_title`, `date`, `time`, `location`, `event_details`, `event_short_details`, `registration_link`, `event_img`, `acc_id`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name', '$acc_id')";
+  $sql = "INSERT INTO `event_info` (`event_title`, `date`, `time`, `locations`, `event_details`, `event_short_details`, `registration_link`, `event_img`, `acc_id`) VALUES ('$eventtitle', '$date', '$time', '$location', '$eventdes', '$eventshortdes', '$registrationlink', '$pic_name', '$acc_id')";
   $result = mysqli_query($conn, $sql);
   // $resultRows = mysqli_num_rows($result);
 
@@ -64,7 +69,7 @@ if (isset($_POST['submit'])) {
     }
 
     .container {
-      padding: 2px 16px;
+      padding: 4px 16px;
 
     }
 
@@ -89,77 +94,79 @@ if (isset($_POST['submit'])) {
 
 <body class="mainBody">
   <!-- sidenav -->
-  <input type="checkbox" id="check" />
-  <label for="check">
-    <i class="fas fa-bars" id="btn"></i>
-    <i class="fas fa-times" id="cancel"></i>
-  </label>
-  <div class="sidebar">
-    <header>
-      <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
-      Alumni_Linked
-    </header>
-    <ul>
-      <li>
-        <a href="userProfile.php">
-          <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-          Profile
-        </a>
-      </li>
-      <li>
-        <a href="alumniList.php">
-          <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-          Alumni
-        </a>
-      </li>
-      <li>
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
-          <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
-        </ul>
+  <?php
+  if ($category == 'Student' or $category == 'Alumni') { ?>
+    <input type="checkbox" id="check" />
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>
+        <img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height: 45px; width: 45px" />
+        Alumni_Linked
+      </header>
+      <ul>
+        <li>
+          <a href="userProfile.php">
+            <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a href="alumniList.php">
+            <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+            Alumni
+          </a>
+        </li>
+        <li>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+          </ul>
 
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-          <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="companyList.php">
-          <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-          Company
-        </a>
-      </li>
-      <li>
-        <a href="event.php">
-          <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-          Events
-        </a>
-      </li>
-      <li>
-        <a href="communityPost.php">
-          <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-          Forum
-        </a>
-      </li>
-      <li>
-        <a href="controllPanel.php">
-          <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-          Controll Panel
-        </a>
-      </li>
-      <li>
-        <a href="logout.php" class="signout">
-          <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-          Sign Out
-        </a>
-      </li>
-    </ul>
-  </div>
-
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="companyList.php">
+            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+            Company
+          </a>
+        </li>
+        <li>
+          <a href="event.php">
+            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+            Events
+          </a>
+        </li>
+        <li>
+          <a href="communityPost.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Forum
+          </a>
+        </li>
+        <li>
+          <a href="controllPanel.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Controll Panel
+          </a>
+        </li>
+        <li>
+          <a href="logout.php" class="signout">
+            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+            Sign Out
+          </a>
+        </li>
+      </ul>
+    </div>
+  <?php } ?>
   <!-- event -->
   <section>
     <ul class="nav justify-content-end">
@@ -186,13 +193,13 @@ if (isset($_POST['submit'])) {
 
       <li>
         <!-- Button trigger modal -->
-        <div class="container">
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="container" style="text-align: center;">
+        <i class="fa fa-pencil-square-o" style="font-size: 20px;" aria-hidden="true"></i>
+          <button type="button" style="background-color: #063146;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Post an Event
           </button>
 
         </div>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -253,7 +260,6 @@ if (isset($_POST['submit'])) {
       </form>
       </li>
     </ul>
-
     <?php
     include('components/dbconnect.php');
     if (isset($_GET['search']) && $chk != false) {
@@ -303,7 +309,7 @@ if (isset($_POST['submit'])) {
       while ($row = mysqli_fetch_assoc($result2)) { ?>
 
         <div class="container">
-          <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+          <div class="card" style="border-radius: 5px;">
             <div class="row g-0">
               <div class="col-2">
                 <img src="eventImg/<?php echo $row['event_img']; ?>" class="img-fluid py-2 px-2" alt="..." style=" height: 200px; width: 200px" />

@@ -1,9 +1,16 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 $catagory = $_SESSION['cat'];
 
 $com_id= $_GET['com_id'];
 ?>
+<?php
+$chk = false;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,6 +139,17 @@ $com_id= $_GET['com_id'];
 <br>
 <br>
 <br>
+        <ul class="nav justify-content-end">
+            <li class="nav-item" style=" margin:10px;">
+                <form action="comjob.php" method="GET" class="d-flex" role="search">
+                    <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
+                                                                                            echo $_GET['search'];
+                                                                                        }
+                                                                                        $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                    <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
+                </form>
+            </li>
+        </ul>
         <div class="container">
             <div class="row">
                 <?php
@@ -139,6 +157,10 @@ $com_id= $_GET['com_id'];
                 $sql2 = "SELECT * FROM `companyinfo`
                 INNER JOIN `job_info`
                 ON job_info.company_id = companyinfo.com_id and companyinfo.com_id = '$com_id'";
+                if (isset($_GET['search']) && $chk != false) {
+                    $search = $_GET['search'];
+                $sql2 = "SELECT * FROM `companyinfo` INNER JOIN `job_info` ON job_info.company_id = companyinfo.com_id
+                where job_title LIKE '%$search%' or experience LIKE '%$search%'  or skill_req LIKE '%$search%' or companyName LIKE '%$search%'";
                 $result2 = mysqli_query($conn, $sql2);
                 // $x = mysqli_num_rows($result2);
                 // echo $x;
@@ -158,13 +180,44 @@ $com_id= $_GET['com_id'];
                                 <p class="card-text">
                                     <small class="text-muted"><?php $new_string =  mb_strimwidth($row['skill_req'], 0, 100, "...."); echo$new_string;   ?></small>
                                 </p>
-                                <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
-                                    <a href="applyJobs.php?com_id=<?php echo $row['com_id']; ?>" target="_blank" class="btn btn-outline-success me-md-2" href="">View Description</a>
-                                </div>
                             </div>
+                            <div class=" mb-2 justify-content-center" style="text-align: center">
+                                    <a href="applyJobs.php?com_id=<?php echo $row['com_id']; ?>" class="btn btn-outline-success" href="">View Description</a>
+                                </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } } else{
+                    $sql2 = "SELECT * FROM `companyinfo`
+                    INNER JOIN `job_info`
+                    ON job_info.company_id = companyinfo.com_id";
+                    $result2 = mysqli_query($conn, $sql2);
+                    // $x = mysqli_num_rows($result2);
+                    // echo $x;
+                    while ($row = mysqli_fetch_assoc($result2)) { ?>
+                        <div class="col-md-4">
+                            <div class="card" style="width: 100%; border-radius: 20px; height: 510px;">
+                                <center><img src="img/<?php echo $row['photo_loc']; ?>" alt="" style="height: 150px; width:200px" class="py-2"></center>
+                                <div class="card-body">
+                                    <h5>Job Title: <?php echo $row['job_title'] ?></h5>
+                                    <h6>Company name: <?php echo $row['companyName'] ?></h6>
+                                    <label for="text"> Vacancy: <?php echo $row['vacancy']; ?> </label><br>
+                                    <label for="text"> Experience: <?php echo $row['experience']; ?> </label><br>
+                                    <label for="text"> Deadline: <?php echo $row['deadline']; ?> </label>
+                                    <p class="card-text">
+                                    <h6>Required Skill</h6>
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"><?php echo $row['skill_req']  ?></small>
+                                    </p>
+                                </div>
+                                <div class=" mb-2 justify-content-center" style="text-align: center">
+                                        <a href="applyJobs.php?com_id=<?php echo $row['com_id']; ?>" class="btn btn-outline-success" href="">View Description</a>
+                                    </div>
+                            </div>
+                        </div>
+                    <?php } 
+                }
+                ?>
             </div>
         </div>
 

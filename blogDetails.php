@@ -1,7 +1,11 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+  header("Location: login.php");
+}
 $user_name = $_SESSION['username'];
 $acc_id = $_SESSION['userID'];
+$catagory = $_SESSION['cat'];
 $bid = $_GET['b_id'];
 if (!$_SESSION['loggedin']) {
     header("Location: login.php");
@@ -54,6 +58,8 @@ $numOfRows = mysqli_num_rows($result);
 
 <body class="mainBody">
     <!-- sidenav -->
+    <?php
+    if ($catagory == 'Student' or $catagory == 'Alumni') { ?>
     <input type="checkbox" id="check" />
     <label for="check">
         <i class="fas fa-bars" id="btn"></i>
@@ -65,66 +71,66 @@ $numOfRows = mysqli_num_rows($result);
             Alumni_Linked
         </header>
         <ul>
-            <li>
-                <a href="userProfile.php">
-                    <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-                    Profile
-                </a>
-            </li>
-            <li>
-                <a href="alumniList.php">
-                    <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-                    Alumni
-                </a>
-            </li>
-            <li>
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
-                    <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
-                </ul>
+        <li>
+          <a href="userProfile.php">
+            <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a href="alumniList.php">
+            <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+            Alumni
+          </a>
+        </li>
+        <li>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+          </ul>
 
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-                    <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="companyList.php">
-                    <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-                    Company
-                </a>
-            </li>
-            <li>
-                <a href="event.php">
-                    <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-                    Events
-                </a>
-            </li>
-            <li>
-                <a href="communityPost.php">
-                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                    Forum
-                </a>
-            </li>
-            <li>
-                <a href="controllPanel.php">
-                    <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                    Controll Panel
-                </a>
-            </li>
-            <li>
-                <a href="logout.php" class="signout">
-                    <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-                    Sign Out
-                </a>
-            </li>
-        </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="companyList.php">
+            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+            Company
+          </a>
+        </li>
+        <li>
+          <a href="event.php">
+            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+            Events
+          </a>
+        </li>
+        <li>
+          <a href="communityPost.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Forum
+          </a>
+        </li>
+        <li>
+          <a href="controllPanel.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Controll Panel
+          </a>
+        </li>
+        <li>
+          <a href="logout.php" class="signout">
+            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+            Sign Out
+          </a>
+        </li>
+      </ul>
     </div>
-
+    <?php }?>
     <!-- event -->
     <section>
 

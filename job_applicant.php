@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['loggedin'] and $_SESSION['loggedin'] != 'Organization' ){
+    header("Location: login.php");
+}
 include('components/dbconnect.php');
 if (isset($_POST['deleteApplicant'])) {
     $a_id = $_POST['aIdToDelete'];
@@ -8,7 +12,6 @@ if (isset($_POST['deleteApplicant'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -110,7 +113,7 @@ if (isset($_POST['deleteApplicant'])) {
         while ($row = mysqli_fetch_assoc($result2)) { ?>
 
             <div class="container">
-                <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+                <div class="card" style="border-radius: 5px;">
                     <div class="card-body">
 
                         <div class="row">
@@ -134,10 +137,10 @@ if (isset($_POST['deleteApplicant'])) {
                                 <h6>Website</h6>
                                 <p> <?php echo $row['websiteLink']; ?></p>
                                 <h6>CV</h6>
-                                <a class="btn btn-outline-success" href="img/<?php echo $row['applicantCV']; ?>" target="_blank"> Download CV </a>
+                                <a class="btn btn-outline-dark" href="img/<?php echo $row['applicantCV']; ?>" target="_blank"> Download CV </a>
                                 <form action="job_applicant.php?com_id=<?php echo $com_id ?>" method="post">
                                     <input type="hidden" name="aIdToDelete" value="<?php echo $row['applicant_id']; ?>">
-                                    <button type="submit" name="deleteApplicant" class="btn btn-dark btn-sm m-1">Delete
+                                    <button type="submit" name="deleteApplicant" class="btn btn-outline-danger mt-2">Delete</button>
                                 </form>
                             </div>
                         </div>

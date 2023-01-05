@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+  header("Location: login.php");
+}
 $num = 0;
 $acc_id = $_SESSION['userID'];
 include('components/dbconnect.php');
@@ -66,56 +69,64 @@ $num = mysqli_num_rows($result4);
       Alumni_Linked
     </header>
     <ul>
-      <li>
-        <a href="userProfile.php">
-          <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-          Profile
-        </a>
-      </li>
-      <li>
-        <a href="alumniList.php">
-          <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-          Alumni
-        </a>
-      </li>
-      <li>
-        <a href="jobsListAlumni.php">
-          <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-          Jobs
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-          <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="comjob.php">
-          <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-          Company
-        </a>
-      </li>
-      <li>
-        <a href="event.php">
-          <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-          Events
-        </a>
-      </li>
-      <li>
-        <a href="communityPost.php">
-          <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-          Forum
-        </a>
-      </li>
-      <li>
-        <a href="logout.php" class="signout">
-          <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-          Sign Out
-        </a>
-      </li>
-    </ul>
+        <li>
+          <a href="userProfile.php">
+            <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a href="alumniList.php">
+            <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+            Alumni
+          </a>
+        </li>
+        <li>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+          <ul class="dropdown-menu" style="background: #212529;">
+            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+          </ul>
+
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+          <ul class="dropdown-menu" style="background: #212529;">
+            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="companyList.php">
+            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+            Company
+          </a>
+        </li>
+        <li>
+          <a href="event.php">
+            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+            Events
+          </a>
+        </li>
+        <li>
+          <a href="communityPost.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Forum
+          </a>
+        </li>
+        <li>
+          <a href="controllPanel.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Controll Panel
+          </a>
+        </li>
+        <li>
+          <a href="logout.php" class="signout">
+            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+            Sign Out
+          </a>
+        </li>
+      </ul>
   </div>
 
   <ul class="nav justify-content-end">
@@ -144,13 +155,35 @@ $num = mysqli_num_rows($result4);
 
   <section>
     <div class="container" style="background-color: transparent; border:transparent;">
-      <form action="communityPost.php" method="post">
-        <label class="mt-4" for="communityPost">
-          <h5>Share Your Thoughts</h5>
-        </label>
-        <input type="text" class="form-control mb-2" id="communityPost_titel" placeholder="Titel" name="communityPost_titel" style="width: 40%">
-        <textarea class="form-control mb-2" id="communityPost_details" name="communityPost_details" placeholder="Your Post" style="width: 60%" rows="3"></textarea>
-        <button type="submit" class="btn btn-dark" name="communityPost">Post</button>
+    <form action="communityPost.php" method="post">
+        <!-- Button trigger modal -->
+        <div class="md-2"  style="text-align:end">
+        <i class="fa fa-pencil-square-o" style="font-size: 20px;" aria-hidden="true"></i>
+        <button type="button" class="btn btn-dark" style="text-align: end;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Make a Post
+        </button>
+        </div>
+        <br>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Share Your Thoughts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="text" class="form-control mb-2" id="communityPost_titel" placeholder="Titel" name="communityPost_titel">
+                <textarea class="form-control mb-2" id="communityPost_details" name="communityPost_details" placeholder="Your Post" rows="3"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-dark" name="communityPost">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
 
       <?php
@@ -159,12 +192,11 @@ $num = mysqli_num_rows($result4);
 
       $sql3 = ("SELECT accounts.user_name , user_info.photo_loc FROM accounts, user_info WHERE accounts.acc_id= user_info.acc_id and accounts.acc_id = '$acc_id';");
       $result3 = mysqli_query($conn, $sql3);
-      while ($row2 = mysqli_fetch_assoc($result3)) {
-      ?>
-        <?php $userName =  $row2['user_name'] ?>
-        <?php $userPic =  $row2['photo_loc'] ?>
-      <?php
-      }
+      $row2 = mysqli_fetch_assoc($result3);
+      
+      $userName =  $row2['user_name'] ;
+      $userPic =  $row2['photo_loc'] ;
+      
 
       if (isset($_POST['communityPost'])) {
         $communityPost_titel = $_POST['communityPost_titel'];

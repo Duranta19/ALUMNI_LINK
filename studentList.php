@@ -1,5 +1,9 @@
 <?php
+session_start();
 $chk = false;
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 ?>
 
 <!DOCTYPE html>

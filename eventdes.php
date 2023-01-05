@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 $catagory = $_SESSION['cat'];
 $user_name = $_SESSION['username'];
 $acc_id = $_SESSION['userID'];
@@ -185,7 +189,7 @@ if (isset($_POST['submit'])) {
     <hr>
     <br>
 
-    <div class="container" style=" height: 300px; width:auto;">
+    <div class="container mb-3" style=" height: 300px; width:auto;">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <?php
@@ -217,7 +221,12 @@ if (isset($_POST['submit'])) {
         </button>
       </div>
     </div>
-    <br><br>
+    <br>
+    <br>
+    <h1>
+      <br>
+      <br>
+    </h1>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

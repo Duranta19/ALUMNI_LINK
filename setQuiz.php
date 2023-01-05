@@ -1,8 +1,12 @@
 <?php
+session_start();
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 include("components/dbconnect.php");
 $qus_code = $_GET['q_code'];
 $qus_num = $_GET['q_num'];
-echo $qus_num;
+// echo $qus_num;
 $msgg = "";
 
 $sql2 = "SELECT * FROM `qus_info` WHERE qus_code = '$qus_code'";
