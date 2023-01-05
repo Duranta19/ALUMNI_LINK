@@ -103,7 +103,7 @@ $data = mysqli_fetch_assoc($result);
             <div class="profile-card" style="background-color: #063146; color:#ffffff;">
                 <img src="img/<?php echo $data['photo_loc']; ?>" style="height: 300px; width:auto;" alt="" class="mt-5">
                 <br>
-                <a style="color: #ffffff;" target="_blank" href="https://<?php echo $data['websiteLink'] ?>" class="btn btn-outline-info mt-4">
+                <a style="color: #ffffff;" target="_blank" href="<?php echo $data['websiteLink'] ?>" class="btn btn-outline-info mt-4">
                     <h2> <?php echo $data['companyName'] ?> </h4>
                 </a>
 
