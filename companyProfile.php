@@ -1,10 +1,17 @@
 <?php
+<<<<<<< HEAD
 $rateing = 0.0;
+=======
+>>>>>>> main
 session_start();
 $user_name = $_SESSION['username'];
 $acc_id = $_SESSION['userID'];
 $com_id = $_GET['com_id'];
+<<<<<<< HEAD
 if (!$_SESSION['loggedin'] and $_SESSION['loggedin'] != 'Organization') {
+=======
+if (!$_SESSION['loggedin']) {
+>>>>>>> main
     header("Location: login.php");
 }
 include('components/dbconnect.php');
@@ -99,6 +106,7 @@ $data = mysqli_fetch_assoc($result);
 
 
     <section>
+<<<<<<< HEAD
         <div style="background-color: #063146; color:#ffffff;">
             <div class="profile-card" style="background-color: #063146; color:#ffffff;">
                 <img src="img/<?php echo $data['photo_loc']; ?>" style="height: 300px; width:auto;" alt="" class="mt-5">
@@ -111,12 +119,29 @@ $data = mysqli_fetch_assoc($result);
                     <h6><?php echo $data['companyDetails']; ?></h6>
                 </div>
                 <hr>
+=======
+        <div class="">
+            <div class="profile-card">
+                <img src="img/<?php echo $data['photo_loc']; ?>" style="height: 300px; width:auto;" alt="" class="cover-pic">
+                <br>
+                <a target="_blank" href="https://<?php echo $data['websiteLink'] ?>" class="btn btn-outline-dark">
+                    <h2> <?php echo $data['companyName'] ?> </h4>
+                </a>
+
+                <div class="container py-4 mt-2 justify-content-center">
+                    <h6><?php echo $data['companyDetails']; ?></h6>
+                </div>
+>>>>>>> main
             </div>
         </div>
         <div class="container mt-2">
             <div class="row">
                 <div class="col-md-8">
+<<<<<<< HEAD
                     <div class="container mt-4 justify-content-center" style="color:#063146;">
+=======
+                    <div class="container mt-4 justify-content-center" style="color:darkred;">
+>>>>>>> main
                         <h5>Available jobs </h5>
                     </div>
                     <?php
@@ -162,7 +187,11 @@ $data = mysqli_fetch_assoc($result);
                     }
 
                     ?>
+<<<<<<< HEAD
                     <div class="container mt-4 justify-content-center" style="color:#063146;">
+=======
+                    <div class="container mt-4 justify-content-center" style="color:darkred;">
+>>>>>>> main
                         <h5> Rating & Review </h5>
                     </div>
                     <div class="container">
@@ -173,15 +202,24 @@ $data = mysqli_fetch_assoc($result);
                         $data = mysqli_fetch_assoc($result);
                         ?>
                         <i class="fas fa-star" style=" color: #fd4; font-size: 30px;"></i>
+<<<<<<< HEAD
                         <h2> <?php $rateing = round((float)$data['AverageRating'],1); echo $rateing;  ?></h2>
                         <p>Out of 5</p>
                     </div>
 
                     <div class="card md-2" style="background-color:#063146;  border-radius: 20px;">
+=======
+                        <h2> <?php echo $data['AverageRating']  ?></h2>
+                        <p>Out of 5</p>
+                    </div>
+
+                    <div class="card md-2" style="background-color:#212529;  border-radius: 20px;">
+>>>>>>> main
                         <form action="companyProfile.php?com_id=<?php echo $com_id ?>" method="post">
                             <div class="form-check card-header px-5">
                                 <div class="row">
                                     <div class="col">
+<<<<<<< HEAD
                                         <!-- <label for="rating1" class="fas fa-star" style="font-size: 20px; color: #fd4;"></label> -->
                                         <input class="form-check-input fas fa-star" style=" color: #fd4; font-size: 30px; margin:auto;" value="1" type="radio" name="rating" id="rating1">
                                     </div>
@@ -200,6 +238,26 @@ $data = mysqli_fetch_assoc($result);
                                     <div class="col">
                                         <!-- <label for="rating5" class="fas fa-star" style="font-size: 20px;color: #fd4;"></label> -->
                                         <input class="form-check-input fas fa-star" style=" color: #fd4; font-size: 30px; margin:auto;" value="5" type="radio" name="rating" id="rating5">
+=======
+                                        <label for="rating1" class="fas fa-star" style="font-size: 20px; color: #fd4;"></label>
+                                        <input class="form-check-input" style=" color: #fd4;" value="1" type="radio" name="rating" id="rating1">
+                                    </div>
+                                    <div class="col">
+                                        <label for="rating2" class="fas fa-star" style=" font-size: 20px;color: #fd4;"></label>
+                                        <input class="form-check-input" value="2" type="radio" name="rating" id="rating2">
+                                    </div>
+                                    <div class="col">
+                                        <label for="rating3" class="fas fa-star" style="font-size: 20px;color: #fd4;"></label>
+                                        <input class="form-check-input" value="3" type="radio" name="rating" id="rating3">
+                                    </div>
+                                    <div class="col">
+                                        <label for="rating4" class="fas fa-star" style="font-size: 20px;color: #fd4;"></label>
+                                        <input class="form-check-input" value="4" type="radio" name="rating" id="rating4">
+                                    </div>
+                                    <div class="col">
+                                        <label for="rating5" class="fas fa-star" style="font-size: 20px;color: #fd4;"></label>
+                                        <input class="form-check-input" value="5" type="radio" name="rating" id="rating5">
+>>>>>>> main
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +265,11 @@ $data = mysqli_fetch_assoc($result);
                                 <textarea class="form-control" name="review" id="review" rows="3" placeholder="Write a review"></textarea>
                             </div>
                             <div class="card-footer" style="text-align: center;">
+<<<<<<< HEAD
                                 <button type="submit" style="width: 40%;" class="btn btn-outline-info" id="submit" name="submit">Post</button>
+=======
+                                <button type="submit" style="width: 40%;" class="btn btn-secondary" id="submit" name="submit">Post</button>
+>>>>>>> main
                             </div>
                         </form>
                     </div>
