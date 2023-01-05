@@ -140,11 +140,7 @@ if (isset($_POST['deleteApplicant'])) {
                                 <a class="btn btn-outline-dark" href="img/<?php echo $row['applicantCV']; ?>" target="_blank"> Download CV </a>
                                 <form action="job_applicant.php?com_id=<?php echo $com_id ?>" method="post">
                                     <input type="hidden" name="aIdToDelete" value="<?php echo $row['applicant_id']; ?>">
-<<<<<<< HEAD
                                     <button type="submit" name="deleteApplicant" class="btn btn-outline-danger mt-2">Delete</button>
-=======
-                                    <button type="submit" name="deleteApplicant" class="btn btn-dark btn-sm m-1">Delete</button>
->>>>>>> main
                                 </form>
                             </div>
                         </div>

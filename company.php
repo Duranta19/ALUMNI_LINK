@@ -123,7 +123,6 @@ if (isset($_POST['postjobs'])) {
 </head>
 
 <body class="mainBody">
-<<<<<<< HEAD
 <br>
   <ul class="nav justify-content-end" style="margin-top: -30px; background-color:#063146; color:#ffffff;">
 
@@ -145,20 +144,6 @@ if (isset($_POST['postjobs'])) {
         <p><?php echo $data['companyDetails']; ?></p>
         </div>
        
-=======
-
-
-  <section>
-
-
-    <div class="container">
-      <div class="profile-card">
-        <img src="img/<?php echo $data['photo_loc']; ?>" style="height: 300px; width:auto;" alt="" class="cover-pic">
-        <br>
-        <div class="container py-4" style="background-color:floralwhite;">
-        <p><?php echo $data['companyDetails']; ?></p>
-        </div>
->>>>>>> main
       </div>
     </div>
     <!-- about -->

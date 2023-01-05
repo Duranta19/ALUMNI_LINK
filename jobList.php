@@ -8,12 +8,6 @@ if(!$_SESSION['loggedin']){
 <?php
 $chk = false;
 ?>
-<<<<<<< HEAD
-=======
-<?php
-$chk = false;
-?>
->>>>>>> main
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +80,6 @@ $chk = false;
                 Alumni_Linked
             </header>
             <ul>
-<<<<<<< HEAD
         <li>
           <a href="userProfile.php">
             <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
@@ -145,58 +138,6 @@ $chk = false;
           </a>
         </li>
       </ul>
-=======
-                <li>
-                    <a href="userProfile.php">
-                        <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="alumniList.php">
-                        <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-                        Alumni
-                    </a>
-                </li>
-                <li>
-                    <a href="jobsListAlumni.php">
-                        <i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 30px"></i>
-                        Jobs
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-                        <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="comjob.php">
-                        <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-                        Company
-                    </a>
-                </li>
-                <li>
-                    <a href="event.php">
-                        <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-                        Events
-                    </a>
-                </li>
-                <li>
-                    <a href="communityPost.php">
-                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                        Forum
-                    </a>
-                </li>
-                <li>
-                    <a href="logout.php" class="signout">
-                        <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-                        Sign Out
-                    </a>
-                </li>
-            </ul>
->>>>>>> main
         </div>
     <?php } ?>
     <!-- event -->
@@ -240,11 +181,7 @@ $chk = false;
                                 <h6>Required Skill</h6>
                                 </p>
                                 <p class="card-text">
-<<<<<<< HEAD
                                     <small class="text-muted"><?php $new_string =  mb_strimwidth($row['skill_req'], 0, 50, "...."); echo $new_string;   ?></small>
-=======
-                                    <small class="text-muted"><?php $new_string =  mb_strimwidth($row['skill_req'], 0, 100, "...."); echo$new_string;   ?></small>
->>>>>>> main
                                 </p>
                             </div>
                             <div class=" mb-2 justify-content-center" style="text-align: center">
@@ -261,11 +198,7 @@ $chk = false;
                     // echo $x;
                     while ($row = mysqli_fetch_assoc($result2)) { ?>
                         <div class="col-md-4">
-<<<<<<< HEAD
                             <div class="card" style="width: 100%; border-radius: 20px; height: 560px;">
-=======
-                            <div class="card" style="width: 100%; border-radius: 20px; height: 510px;">
->>>>>>> main
                                 <center><img src="img/<?php echo $row['photo_loc']; ?>" alt="" style="height: 150px; width:200px" class="py-2"></center>
                                 <div class="card-body">
                                     <h5>Job Title: <?php echo $row['job_title'] ?></h5>
