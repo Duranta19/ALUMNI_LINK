@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 include("components/dbconnect.php");
 $acc_id = $_GET['acc_id'];
 $sql1 = "SELECT * FROM `user_info` WHERE acc_id = '$acc_id';";

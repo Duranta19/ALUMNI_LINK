@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 $i = 0;
 $j = 0;
 $score = 0;
@@ -151,7 +155,9 @@ if (isset($_POST['submit'])) {
             </div>
         <?php $i = $i + 1;
         } ?>
-        <input type="submit" name="submit" class="btn btn-success" value="Submit">
+
+       <center><input type="submit" name="submit" class="btn btn-lg btn-outline-success mt-2 mb-4" value="Submit"></center> 
+
         </form>
         <!-- <div class="card w-75 m-auto">
             <div class="card-header">

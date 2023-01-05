@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+  header("Location: login.php");
+}
 $user_name = $_SESSION['username'];
 $acc_id = $_SESSION['userID'];
 $com_id = $_GET['com_id'];
@@ -19,7 +22,7 @@ $data2 = mysqli_fetch_assoc($result2);
 $sql3 = "SELECT * FROM `user_info` WHERE user_info.acc_id = '$acc_id';";
 $result3 = mysqli_query($conn, $sql3);
 $data3 = mysqli_fetch_assoc($result3);
-// $photo = $data3['photo_loc'];
+$photo = $data3['photo_loc'];
 ?>
 
 <?php

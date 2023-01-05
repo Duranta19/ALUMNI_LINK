@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!$_SESSION['loggedin']) {
+    header("Location: login.php");
+}
+$comId = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,12 +24,12 @@
         }
 
         .card {
-            box-shadow: 0 4px 8px 0 rgba(138, 169, 171, 0.5);
+            box-shadow: 0 4px 8px 0 rgba(138, 169, 171, 0.2);
             transition: 0.3s;
         }
 
         .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(138, 169, 171, 1);
+            box-shadow: 0 8px 16px 0 rgba(138, 169, 171, 0.5);
         }
 
         * {
@@ -129,7 +136,7 @@
         }
 
         .card {
-            background-color: rgba(222, 233, 230, 0.516);
+            background-color: rgba(222, 233, 230, 0.2);
             border-radius: 5px;
         }
     </style>
@@ -162,7 +169,7 @@
             </li>
             <li>
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="background-color: #063146;">
                     <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
                     <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
                 </ul>
@@ -170,7 +177,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="background-color: #063146;">
                     <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
                     <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
                 </ul>
@@ -208,8 +215,17 @@
         </ul>
     </div>
 
-    <ul class="nav justify-content-center">
+    <ul class="nav justify-content-end" style=" margin-top:-30px;">
         <li class="nav-item" style=" margin:10px;">
+<<<<<<< HEAD
+            <form action="companyList.php" method="GET" class="d-flex" role="search">
+                <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
+                                                                                        echo $_GET['search'];
+                                                                                    }
+                                                                                    $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+                <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
+            </form>
+=======
         <form action="companyList.php" method="GET" class="d-flex" role="search">
                     <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
                                                                                             echo $_GET['search'];
@@ -217,6 +233,7 @@
                                                                                         $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
                     <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
                 </form>
+>>>>>>> main
         </li>
     </ul>
 
@@ -226,6 +243,25 @@
         include('components/dbconnect.php');
         if (isset($_GET['search']) && $chk != false) {
             $search = $_GET['search'];
+<<<<<<< HEAD
+            $sql2 = "SELECT * FROM `companyinfo` WHERE companyLocation LIKE '%$search%' or companyDetails LIKE '%$search%' or companyName LIKE '%$search%'";
+            $result2 = mysqli_query($conn, $sql2);
+            while ($row = mysqli_fetch_assoc($result2)) { ?>
+                <div class="card w-75 mx-auto">
+                    <div class="card-body">
+                        <div class="image">
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="img/<?php echo $row['photo_loc']; ?>" alt="">
+
+                                </div>
+                                <div class="col">
+                                    <a href="companyProfile.php?com_id=<?php echo $row['com_id'] ?>" style="text-decoration:none; color: #063146;">
+                                        <h4> <?php echo $row['companyName'] ?> </h4>
+                                    </a>
+
+                                </div>
+=======
         $sql2 = "SELECT * FROM `companyinfo`
     INNER JOIN `job_info`
     ON job_info.company_id = companyinfo.com_id WHERE companyLocation LIKE '%$search%' or vacancy LIKE '%$search%' or companyDetails LIKE '%$search%' or companyName LIKE '%$search%'";
@@ -249,26 +285,94 @@
                             <div class="col">
                                 <b>Location</b>
                                 <p class="card-text1"><?php echo $row['companyLocation'] ?></p>
+>>>>>>> main
                             </div>
-                            <div class="col">
-                                <b>Vacancy</b>
-                                <p class="card-text"><?php echo $row['vacancy'] ?></p>
+
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <b>Location</b>
+                                    <p class="card-text1"><?php echo $row['companyLocation'] ?></p>
+                                </div>
+                                <div class="col">
+                                    <?php
+                                    $sql3 = "SELECT * FROM `comreview` WHERE com_id = '$comId';";
+                                    $result3 = mysqli_query($conn, $sql3);
+                                    $rate = mysqli_fetch_assoc($result3);
+                                    $rating = $rate['rating'] ?? 'N/A';
+                                    ?>
+                                    <b>Rating</b>
+                                    <p class="card-text"><?php echo $rating; ?></p>
+                                </div>
+                                <div class="col">
+                                    <b>Company Founded</b>
+                                    <p class="card-text"><?php echo $row['founded'] ?></p>
+                                </div>
+                                <div class="col">
+                                    <b>Industry</b>
+                                    <p class="card-text"><?php echo $row['websiteLink'] ?></p>
+                                </div>
                             </div>
-                            <div class="col">
-                                <b>Company Founded</b>
-                                <p class="card-text"><?php echo $row['founded'] ?></p>
-                            </div>
-                            <div class="col">
-                                <b>Industry</b>
-                                <p class="card-text"><?php echo $row['websiteLink'] ?></p>
-                            </div>
+                            <h5 class="card-title">Description</h5>
+                            <p class="card-text"><?php echo $row['companyDetails'] ?></p>
                         </div>
-                        <h5 class="card-title">Description</h5>
-                        <p class="card-text"><?php echo $row['companyDetails'] ?></p>
                     </div>
                 </div>
-            </div>
 
+            <?php }
+        } else {
+            $sql2 = "SELECT * FROM `companyinfo` WHERE 1;";
+            $result2 = mysqli_query($conn, $sql2);
+            while ($row = mysqli_fetch_assoc($result2)) {
+                $comId = $row['com_id']; ?>
+                <div class="card w-75 mx-auto">
+                    <div class="card-body">
+                        <div class="image">
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="img/<?php echo $row['photo_loc']; ?>" alt="">
+
+                                </div>
+                                <div class="col">
+                                    <a href="companyProfile.php?com_id=<?php echo $row['com_id'] ?>" style="text-decoration:none; color: #063146;">
+                                        <h4> <?php echo $row['companyName'] ?> </h4>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <b>Location</b>
+                                    <p class="card-text1"><?php echo $row['companyLocation'] ?></p>
+                                </div>
+                                <div class="col">
+                                    <?php
+                                    $sql3 = "SELECT * FROM `comreview` WHERE com_id = '$comId';";
+                                    $result3 = mysqli_query($conn, $sql3);
+                                    $rate = mysqli_fetch_assoc($result3);
+                                    $rating = $rate['rating'] ?? 'N/A';
+                                    ?>
+                                    <b>Rating</b>
+                                    <p class="card-text"><?php echo $rating; ?></p>
+                                </div>
+                                <div class="col">
+                                    <b>Company Founded</b>
+                                    <p class="card-text"><?php echo $row['founded'] ?></p>
+                                </div>
+                                <div class="col">
+                                    <b>Industry</b>
+                                    <p class="card-text"><?php echo $row['websiteLink'] ?></p>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Description</h5>
+                            <p class="card-text"><?php echo $row['companyDetails'] ?></p>
+                        </div>
+                    </div>
+                </div>
+
+<<<<<<< HEAD
+        <?php }
+=======
         <?php } }
         else{
             $sql2 = "SELECT * FROM `companyinfo`
@@ -315,6 +419,7 @@
                     </div>
         
                 <?php }
+>>>>>>> main
         }
         ?>
 

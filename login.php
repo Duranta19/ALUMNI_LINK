@@ -1,7 +1,7 @@
 <?php
 $category = '';
 $login = false;
-$login_error = false;
+$login_error = '';
 
 if(isset($_POST['submit'])){
   include ('components/dbconnect.php');
@@ -34,7 +34,8 @@ if(isset($_POST['submit'])){
     
   }
   else {
-    $login_error = "Invalid Credentials";
+    $login = false;
+    $login_error = 'Invalid Credentials';
   }
   if($category == 'Alumni' or $category == 'Student'){
     header("Location: userProfile.php");
@@ -101,7 +102,7 @@ if(isset($_POST['submit'])){
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div> ';
   }
-  if ($login_error) {
+  if (!$login) {
     echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Error!</strong> ' . $login_error . '
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

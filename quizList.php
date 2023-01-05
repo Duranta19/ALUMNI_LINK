@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+  header("Location: login.php");
+}
 $catagory = $_SESSION['cat'];
 ?>
 <!DOCTYPE html>
@@ -40,7 +43,7 @@ $catagory = $_SESSION['cat'];
         </li>
         <li>
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="background: #212529;">
             <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
             <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
           </ul>
@@ -48,7 +51,7 @@ $catagory = $_SESSION['cat'];
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="background: #212529;">
             <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
             <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
           </ul>
@@ -98,13 +101,13 @@ $catagory = $_SESSION['cat'];
       <div class="card w-75 m-auto shadow mb-3" style="border-radius: 25px;">
         <div class="card-body">
           <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <h5 class="card-title"><?php echo $row['qus_title']; ?> (<?php echo $row['qus_code']; ?>)</h5>
               <p class="card-text"><?php echo $row['qus_des']; ?></p>
               <p class="card-text">Total Questions : <?php echo $row['total_qus']; ?></p>
             </div>
-            <div class="col-sm-2">
-              <a href="quiz.php?quiz_code=<?php echo $row['qus_code'] ?>" class="btn btn-primary m-auto ">Attemp</a>
+            <div class="col-sm-3">
+              <a href="quiz.php?quiz_code=<?php echo $row['qus_code'] ?>" style="background: #063146; color:#ffffff; border-radius:10px;" class="btn mt-4 ">Attemp</a>
             </div>
           </div>
         </div>

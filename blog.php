@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if (!$_SESSION['loggedin']) {
+    header("Location: login.php");
+}
+$catagory = $_SESSION['cat'];
 if (isset($_POST['submit'])) {
 
     include('components/dbconnect.php');
@@ -86,75 +90,77 @@ $chk = false;
 
 <body class="mainBody">
     <!-- sidenav -->
-    <input type="checkbox" id="check" />
-    <label for="check">
-        <i class="fas fa-bars" id="btn"></i>
-        <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-      <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
-        Alumni_Linked</header>
-        <ul>
-        <li>
-          <a href="userProfile.php">
-            <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
-            Profile
-          </a>
-        </li>
-        <li>
-          <a href="alumniList.php">
-            <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
-            Alumni
-          </a>
-        </li>
-        <li>
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
-            <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
-          </ul>
+    <?php
+    if ($catagory == 'Student' or $catagory == 'Alumni') { ?>
+        <input type="checkbox" id="check" />
+        <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+        </label>
+        <div class="sidebar">
+            <header><img src="https://th.bing.com/th/id/R.54cd6d754c85e71ad31f2fbbfd8f238c?rik=ls%2bf7J5ZgkkaIQ&pid=ImgRaw&r=0" alt="" style="height:45px; width:45px;" />
+                Alumni_Linked</header>
+            <ul>
+                <li>
+                    <a href="userProfile.php">
+                        <i class="fa-sharp fa-solid fa-user" style="font-size: 25px; margin-right: 30px"></i>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="alumniList.php">
+                        <i class="fa-sharp fa-solid fa-users" style="font-size: 25px; margin-right: 25px"></i>
+                        Alumni
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-briefcase" style="font-size: 25px; margin-right: 20px"></i>Jobs</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
+                        <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
+                    </ul>
 
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="companyList.php">
-            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-            Company
-          </a>
-        </li>
-        <li>
-          <a href="event.php">
-            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-            Events
-          </a>
-        </li>
-        <li>
-          <a href="communityPost.php">
-            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-            Forum
-          </a>
-        </li>
-        <li>
-          <a href="controllPanel.php">
-            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-            Controll Panel
-          </a>
-        </li>
-        <li>
-          <a href="logout.php" class="signout">
-            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-            Sign Out
-          </a>
-        </li>
-      </ul>
-    </div>
-
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+                        <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="companyList.php">
+                        <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+                        Company
+                    </a>
+                </li>
+                <li>
+                    <a href="event.php">
+                        <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="communityPost.php">
+                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                        Forum
+                    </a>
+                </li>
+                <li>
+                    <a href="controllPanel.php">
+                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+                        Controll Panel
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.php" class="signout">
+                        <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <?php } ?>
     <!-- event -->
     <section>
         <ul class="nav justify-content-end">
@@ -162,7 +168,12 @@ $chk = false;
                 <form action="blog.php" method="GET" class="d-flex" role="search">
                     <input class="form-control me-2" name="search" type="search" value="<?php if (isset($_GET['search'])) {
                                                                                             echo $_GET['search'];
+<<<<<<< HEAD
+                                                                                        }
+                                                                                        $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+=======
                                                                                         }  $chk = true; ?>" placeholder="Search" aria-label="Search" style="border-radius: 30px">
+>>>>>>> main
                     <button class="btn btn-dark" type="submit" style="background: #063146; border-radius:20px;">Search</button>
                 </form>
             </li>
@@ -181,10 +192,10 @@ $chk = false;
             <li>
                 <!-- Button trigger modal -->
                 <div class="container">
-                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa fa-large fa-pencil-square-o" style="font-size: 20px;" aria-hidden="true"></i>
+                    <button type="button" style="background-color: #063146;" class="btn btn-lg btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Post Blogs
                     </button>
-
                 </div>
 
                 <!-- Modal -->
@@ -233,6 +244,55 @@ $chk = false;
             <div class="row">
                 <?php
                 include('components/dbconnect.php');
+<<<<<<< HEAD
+
+                if (isset($_GET['search']) && $chk != false) {
+                    $search = $_GET['search'];
+                    $sql2 = "SELECT * FROM `blog_info` WHERE blog_title LIKE '%$search%' OR blogs_short_des LIKE '%$search%';";
+                    $result2 = mysqli_query($conn, $sql2);
+                    while ($row = mysqli_fetch_assoc($result2)) { ?>
+                        <div class="col-md-4 py-2">
+                            <div class="card" style="width: 100%; border-radius: 20px; height: 550px;">
+                                <center><img src="img/<?php echo $row['blog_img']; ?>" alt="" style="height: 150px; width:200px" class="py-2"></center>
+                                <div class="card-body" style="height: 350px;">
+                                    <h4><?php echo $row['blog_title'] ?></h4>
+                                    <label for="text"> Post Date & Time: <br> <?php echo $row['blog_datetime']; ?> </label>
+                                    <p class="card-text">
+                                    <h5>Description</h5>
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"><?php echo $row['blogs_short_des']  ?></small>
+                                    </p>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                                        <a href="blogDetails.php?b_id=<?php echo $row['blog_id'] ?>" target="_blank" class="btn btn-outline-success me-md-2" href="">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } else {
+                    $sql2 = "SELECT * FROM `blog_info` WHERE 1;";
+                    $result2 = mysqli_query($conn, $sql2);
+                    while ($row = mysqli_fetch_assoc($result2)) { ?>
+                        <div class="col-md-4 py-2">
+                            <div class="card" style="width: 100%; border-radius: 20px; height: 550px;">
+                                <center><img src="img/<?php echo $row['blog_img']; ?>" alt="" style="height: 150px; width:200px" class="py-2"></center>
+                                <div class="card-body" style="height: 350px;">
+                                    <h4><?php echo $row['blog_title'] ?></h4>
+                                    <label for="text"> Post Date & Time: <br> <?php echo $row['blog_datetime']; ?> </label>
+                                    <p class="card-text">
+                                    <h5>Description</h5>
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"><?php echo $row['blogs_short_des']  ?></small>
+                                    </p>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-center" style="text-align: center">
+                                        <a href="blogDetails.php?b_id=<?php echo $row['blog_id'] ?>" target="_blank" class="btn btn-outline-success me-md-2" href="">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+=======
                 
             if (isset($_GET['search']) && $chk != false) {
                 $search = $_GET['search'];
@@ -280,6 +340,7 @@ $chk = false;
                             </div>
                         </div>
                     </div>
+>>>>>>> main
                 <?php }
                 }
                 ?>

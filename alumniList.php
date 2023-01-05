@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 $catagory = $_SESSION['cat'];
 $chk = false;
 ?>
@@ -29,12 +32,12 @@ $chk = false;
         }
 
         .card {
-            box-shadow: 0 4px 8px 0 rgba(138, 169, 171, 0.5);
+            box-shadow: 0 4px 8px 0 rgba(138, 169, 171, 0.2);
             transition: 0.3s;
         }
 
         .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(138, 169, 171, 1);
+            box-shadow: 0 8px 16px 0 rgba(138, 169, 171, .5);
         }
 
         .container {
@@ -94,6 +97,8 @@ $chk = false;
             <li><a class="dropdown-item" href="jobList.php">Jobs</a></li>
             <li><a class="dropdown-item" href="jobsListAlumni.php">Jobs Information</a></li>
           </ul>
+<<<<<<< HEAD
+=======
 
         </li>
         <li class="nav-item dropdown">
@@ -135,46 +140,49 @@ $chk = false;
         </li>
       </ul>
     </div>
+>>>>>>> main
 
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
-                        <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="companyList.php">
-                        <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
-                        Company
-                    </a>
-                </li>
-                <li>
-                    <a href="event.php">
-                        <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
-                        Events
-                    </a>
-                </li>
-                <li>
-                    <a href="communityPost.php">
-                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                        Forum
-                    </a>
-                </li>
-                <li>
-                    <a href="controllPanel.php">
-                        <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
-                        Controll Panel
-                    </a>
-                </li>
-                <li>
-                    <a href="logout.php" class="signout">
-                        <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
-                        Sign Out
-                    </a>
-                </li>
-            </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-sharp fa-solid fa-file-circle-question" style="font-size: 25px; margin-right: 20px"></i>Job Preparation</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="blog.php">Blogs</a></li>
+            <li><a class="dropdown-item" href="quizList.php">Quiz</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="companyList.php">
+            <i class="fa-sharp fa-solid fa-building" style="font-size: 25px; margin-right: 30px"></i>
+            Company
+          </a>
+        </li>
+        <li>
+          <a href="event.php">
+            <i class="fa-sharp fa-solid fa-calendar-check" style="font-size: 25px; margin-right: 30px"></i>
+            Events
+          </a>
+        </li>
+        <li>
+          <a href="communityPost.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Forum
+          </a>
+        </li>
+        <li>
+          <a href="controllPanel.php">
+            <i class="fa-sharp fa-solid fa-comments" style="font-size: 25px; margin-right: 20px"></i>
+            Controll Panel
+          </a>
+        </li>
+        <li>
+          <a href="logout.php" class="signout">
+            <i class="fa-sharp fa-solid fa-right-from-bracket" style="font-size: 25px; margin-right: 30px"></i>
+            Sign Out
+          </a>
+        </li>
+      </ul>
+    </div>
+       
         </div>
     <?php } ?>
     <section>
@@ -241,7 +249,7 @@ $chk = false;
                 ?>
                     <div class="container">
                         <main class="container">
-                            <div class="card" style="border-radius: 5px; border-color:aquamarine;  background-color:#f7f7f7;">
+                            <div class="card" style="border-radius: 5px; ">
                                 <div class="row align-items-center">
                                     <div class="col-md-2 align-self-center">
                                         <img class="py-2 px-2" style="height: auto; width:100%; border-radius: 50%;" src="img/<?php echo $row['photo_loc'] ?>" alt="">

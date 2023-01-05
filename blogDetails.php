@@ -1,7 +1,11 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+  header("Location: login.php");
+}
 $user_name = $_SESSION['username'];
 $acc_id = $_SESSION['userID'];
+$catagory = $_SESSION['cat'];
 $bid = $_GET['b_id'];
 if (!$_SESSION['loggedin']) {
     header("Location: login.php");
@@ -54,6 +58,8 @@ $numOfRows = mysqli_num_rows($result);
 
 <body class="mainBody">
     <!-- sidenav -->
+    <?php
+    if ($catagory == 'Student' or $catagory == 'Alumni') { ?>
     <input type="checkbox" id="check" />
     <label for="check">
         <i class="fas fa-bars" id="btn"></i>
@@ -124,7 +130,7 @@ $numOfRows = mysqli_num_rows($result);
         </li>
       </ul>
     </div>
-
+    <?php }?>
     <!-- event -->
     <section>
 

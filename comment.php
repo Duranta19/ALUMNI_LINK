@@ -154,7 +154,7 @@
                 ?>
                     <div class="card mt-2" style="width: 70%; margin: auto; background-color: rgba(221, 227, 231, 0.751); border-radius: 30px;">
                         <div class="card-body">
-                            <img src="img/<?php echo $row['userPic'] ?>" style="border-radius: 50%;" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <img src="img/<?php echo $row['userPic'] ?>" style="border-radius: 50%;" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <h6 class="card-title"><?php echo $row['userName'] ?> </h6>
                             <p class="card-text"> <?php echo $row['comment'] ?></p>
                         </div>

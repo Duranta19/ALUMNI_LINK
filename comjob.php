@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['loggedin']){
+    header("Location: login.php");
+}
 $catagory = $_SESSION['cat'];
 
 $com_id= $_GET['com_id'];

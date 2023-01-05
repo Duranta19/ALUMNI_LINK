@@ -123,6 +123,29 @@ if (isset($_POST['postjobs'])) {
 </head>
 
 <body class="mainBody">
+<<<<<<< HEAD
+<br>
+  <ul class="nav justify-content-end" style="margin-top: -30px; background-color:#063146; color:#ffffff;">
+
+    <li class="nav-item">
+      <a class="btn btn-danger m-3" href="logout.php">Logout</a>
+    </li>
+
+
+  </ul>
+
+  <section>
+
+
+    <div class="card" style=" background-color:#063146; color:#ffffff;">
+      <div class="profile-card" style="background-color:#063146; color:#ffffff;">
+        <img src="img/<?php echo $data['photo_loc']; ?>" style="height: 300px; width:auto;" alt="" class="cover-pic">
+        <br>
+        <div class="container" style=" background-color:#063146; color:#ffffff;">
+        <p><?php echo $data['companyDetails']; ?></p>
+        </div>
+       
+=======
 
 
   <section>
@@ -135,11 +158,11 @@ if (isset($_POST['postjobs'])) {
         <div class="container py-4" style="background-color:floralwhite;">
         <p><?php echo $data['companyDetails']; ?></p>
         </div>
+>>>>>>> main
       </div>
     </div>
-
     <!-- about -->
-    <div class="container">
+    <div class="container mt-5 mb-5">
       <div class="row">
         <div class="col-md-4">
           <div class="card mx-2" style="width: 23rem;  border-radius: 20px;">

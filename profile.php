@@ -36,6 +36,41 @@ $lng_arr = explode(",", $data['language']);
       background: #ffffff;
     }
   </style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['bar']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Category', 'Scores'],
+        <?php
+        include('components/dbconnect.php');
+        $sql4 = "SELECT category, avg(score) as score FROM quiz_result where acc_id = '$acc_id' GROUP BY category;";
+        $result4 = mysqli_query($conn, $sql4);
+        while ($row2 = mysqli_fetch_assoc($result4)) {
+          $a = $row2['category'];
+          $b = $row2['score'];
+        ?>['<?php echo $a; ?>', <?php echo $b ?>],
+        <?php } ?>
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Quiz Performance',
+          subtitle: 'Category, Score',
+        },
+        bars: 'horizontal', // Required for Material Bar Charts.
+        colors: ['#063146']
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  </script>
 </head>
 
 <body class="mainBody">
@@ -306,7 +341,9 @@ $lng_arr = explode(",", $data['language']);
             <hr>
           </div>
         </div>
+        <div id="barchart_material" style="width: 600px; height: 300px; margin:10px"></div>
       </div>
+      
     </div>
   </section>
 
